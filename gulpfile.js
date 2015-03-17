@@ -3,8 +3,7 @@
 var frau = require('free-range-app-utils'),
 	gulp = require('gulp'),
 	pjson = require('./package.json'),
-	publisher = require('gulp-frau-publisher'),
-	key = require('./private-key.js');
+	publisher = require('gulp-frau-publisher');
 
 var options = {
     id: pjson.appId,
