@@ -3,6 +3,7 @@
 var frau = require('free-range-app-utils'),
 	gulp = require('gulp'),
 	pjson = require('./package.json'),
+	pg = require('peanut-gallery'),
 	publisher = require('gulp-frau-publisher');
 
 var options = {
@@ -37,5 +38,15 @@ gulp.task( 'appresolver', function() {
 
 gulp.task( 'publish-release', function( cb ) {
 	gulp.src('./dist/**')
-		.pipe( appPublisher.getStream() );
+		.pipe( appPublisher.getStream() )
+		.on( 'end', function() {
+			var message = '[Deployment available online](' + publisher.getLocation() + appFilename + ')';
+
+			pg.comment( message, {}, function( error, response ) {
+				if( error )
+					return cb( JSON.stringify( error ) );
+				cb();
+			} );
+
+		} );
 });
