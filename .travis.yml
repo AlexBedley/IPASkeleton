@@ -7,7 +7,7 @@ branches:
 sudo: false
 before_install:
 - export COMMIT_SHA=`git log -1 --pretty=format:%H`
-script:
+after_success:
 - '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ "$TRAVIS_SECURE_ENV_VARS" = "true" ] && export NODE_ENV=production && npm run
   publish-release'
   # ENV-GLOBAL-SECURE KEYS
