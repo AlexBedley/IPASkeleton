@@ -1,5 +1,7 @@
 # Created by https://www.gitignore.io
 
+private-key.js
+
 ### Node ###
 # Logs
 logs

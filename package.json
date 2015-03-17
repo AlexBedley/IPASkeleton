@@ -1,5 +1,6 @@
 {
   "name": "IPASkeleton",
+  "appId": "ipa",
   "version": "0.0.1",
   "description": "Skeleton free-range app",
   "private": true,
@@ -7,8 +8,12 @@
     "prebuild": "npm run clean -s",
     "build:js": "browserify -x d2l-orgunit -s IPA ./src/app.js > ./dist/app.js",
     "build:appconfig-local": "gulp appconfig-local",
+    "build:appconfig-release": "gulp appconfig-release",
+    "prebuild:release": "npm run clean -s",
+    "build:release": "npm run build:js -s && npm run build:appconfig-release -s",
     "build": "npm run build:js && npm run build:appconfig-local",
-    "clean": "rm -rf dist && mkdir dist"
+    "clean": "rm -rf dist && mkdir dist",
+    "publish-release": "npm run build:release -s && gulp publish-release"
   },
   "devDependencies": {
     "browserify": "^9.0.3",
