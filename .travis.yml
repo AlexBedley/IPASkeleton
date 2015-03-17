@@ -7,3 +7,10 @@ before_install:
 after_success:
 - '[ "$TRAVIS_SECURE_ENV_VARS" = "true" ] && export NODE_ENV=production && npm run
   publish-release'
+  # ENV-GLOBAL-SECURE KEYS
+  # SECRET_KEY(oGA12)
+  # GITHUB_TOKEN (Cw/hV) 
+env:
+  global:
+  - secure: oGA12toJHHQpEtvLHC3smei81FJsDvkg3ZRvTeZ63ooM4a7xY4VKqPZxUS1VML1nZ+WPbIcZD+H3ayLHi/jkezM7FGZeITIp+a1BexM+4D7QJSgkZXjF7FCFY+bJXdjGbqDUWp9hVkyMYuLOyZsTLCFeaVLVslnM+yVRzbVWvm8=
+  - secure: Cw/hVRnhzYUOFaG2R4cMspu3W/fRk5TOSw6h8ZXcscT/0xx+hL0vnKxRCD+HReuP51PQEqcD1Gc//erYKUjo9hFXEUhPG+cJa5FPzqg2ecvvFkHhsfL+RO28/QSV1dH1yZ9OM2Fo/fWRrYM648CZp2CFsBVeIKK0UQ0i+x2j2Dw=

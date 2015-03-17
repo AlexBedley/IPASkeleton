@@ -19,6 +19,7 @@
     "browserify": "^9.0.3",
     "free-range-app-utils": "^0.2.1",
     "gulp": "^3.8.11",
-    "gulp-frau-publisher": "^2.1.3"
+    "gulp-frau-publisher": "^2.1.3",
+    "peanut-gallery": "0.0.4"
   }
 }
