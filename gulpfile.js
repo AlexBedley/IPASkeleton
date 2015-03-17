@@ -12,7 +12,7 @@ var options = {
         "key": "AKIAJPKHVT3XFBAKFZWA",
         "secret": process.env.SECRET_KEY
     },
-    devTag: 'test02'
+    devTag: 'test03'
 };
 
 var appFilename = 'app.js';
