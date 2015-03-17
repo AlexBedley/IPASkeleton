@@ -26,7 +26,7 @@ To see it in the LE we will need to make some changes.
 1. Clone the [Dev AppRegistry Config](https://git.dev.d2l/users/cpacey/repos/lp-devappregistry-config/browse) into your instance's `checkout` directory
 2. Run a `full_all.bat` so that your instance picks up the Dev AppRegistry Config
 
-Now, once we've locally hosted the app (see [*Running the App*](https://github.com/AlexBedley/IPASkeleton#running-the-app) above), we can navigate to `/d2l/apps/IPASkeleton/` and you should see `Hello, World!` in the top left corner.
+Now, once we've locally hosted the app (see [*Running the App*](https://github.com/AlexBedley/IPASkeleton#running-the-app-locally) above), we can navigate to `/d2l/apps/IPASkeleton/` and you should see `Hello, World!` in the top left corner.
 
 ##Publishing the App to the CDN
 Our [Travis-CI](https://travis-ci.org/AlexBedley/IPASkeleton) should be set up to automatically publish on commit to the `master` branch. To publish a new version of the app, simply submit a pull request to `master` and it will publish after the merge. To publish from your local machine (not recommended ever) you must
@@ -38,7 +38,7 @@ Our [Travis-CI](https://travis-ci.org/AlexBedley/IPASkeleton) should be set up t
 5. **Don't commit** because the secret key is now in `gulpfile.js`
 
 ##Making Changes
-To make changes to the app (assuming you have already [cloned it](https://github.com/AlexBedley/IPASkeleton#running-the-app))
+To make changes to the app (assuming you have already [cloned it](https://github.com/AlexBedley/IPASkeleton#running-the-app-locally))
 
 1. Pull changes from others `git pull`
 2. Install any new packages `npm install`
