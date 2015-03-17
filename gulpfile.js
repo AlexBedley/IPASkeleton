@@ -10,7 +10,7 @@ var options = {
     id: pjson.appId,
     creds: {
         "key": "AKIAJPKHVT3XFBAKFZWA",
-        "secret": key
+        "secret": process.env.SECRET_KEY
     },
     devTag: 'test02'
 };
