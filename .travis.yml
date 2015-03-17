@@ -7,3 +7,7 @@ before_install:
 after_success:
 - '[ "$TRAVIS_SECURE_ENV_VARS" = "true" ] && export NODE_ENV=production && npm run
   publish-release'
+env:
+  global: 
+    # SECRET_KEY
+    secure: oGA12toJHHQpEtvLHC3smei81FJsDvkg3ZRvTeZ63ooM4a7xY4VKqPZxUS1VML1nZ+WPbIcZD+H3ayLHi/jkezM7FGZeITIp+a1BexM+4D7QJSgkZXjF7FCFY+bJXdjGbqDUWp9hVkyMYuLOyZsTLCFeaVLVslnM+yVRzbVWvm8= 
