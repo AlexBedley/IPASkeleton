@@ -12,7 +12,7 @@ var options = {
         "key": "AKIAJPKHVT3XFBAKFZWA",
         "secret": key
     },
-    devTag: 'test01'
+    devTag: 'test02'
 };
 
 var appFilename = 'app.js';

@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+- '0.10'
+sudo: false
+before_install:
+- export COMMIT_SHA=`git log -1 --pretty=format:%H`
+after_success:
+- '[ "$TRAVIS_SECURE_ENV_VARS" = "true" ] && export NODE_ENV=production && npm run
+  publish-release'
