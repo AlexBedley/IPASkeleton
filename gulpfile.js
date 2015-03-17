@@ -40,7 +40,7 @@ gulp.task( 'publish-release', function( cb ) {
 	gulp.src('./dist/**')
 		.pipe( appPublisher.getStream() )
 		.on( 'end', function() {
-			var message = '[Deployment available online](' + publisher.getLocation() + appFilename + ')';
+			var message = '[Deployment available online](' + appPublisher.getLocation() + appFilename + ')';
 
 			pg.comment( message, {}, function( error, response ) {
 				if( error )
