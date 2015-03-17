@@ -55,7 +55,7 @@ You will need to do this if we need to add a new secret variable (API key, etc.)
 
 1. Install [Ruby](http://dl.bintray.com/oneclick/rubyinstaller/rubyinstaller-2.2.1.exe?direct), making sure to check the box to add Ruby to your `PATH`
 2. Restart your computer to add `ruby` and `gem` to your `PATH`
-3. Downgrade your `gem` version by running `???` (Usually the latest versions are not stable on Windows)
+3. Downgrade your `gem` version by running `gem update --system 2.4.4` (at the time of this writing 2.4.7 did not work for us on Windows)
 4. Install the travis gem `gem install travis`
 5. Navigate to the repo root
 6. Run `travis encrypt myKey=mySecretValue --add env.global`. This will encrypt `mySecretValue` and add it to the `.travis.yml` file
