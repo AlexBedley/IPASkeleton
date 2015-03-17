@@ -1,6 +1,9 @@
 language: node_js
 node_js:
 - '0.10'
+branches:
+  only:
+  - master
 sudo: false
 before_install:
 - export COMMIT_SHA=`git log -1 --pretty=format:%H`
