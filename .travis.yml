@@ -8,10 +8,13 @@ sudo: false
 before_install:
 - export COMMIT_SHA=`git log -1 --pretty=format:%H`
 script:
+- npm run test
 - '[ "$TRAVIS_SECURE_ENV_VARS" = "true" ] && export NODE_ENV=production && (([ "${TRAVIS_PULL_REQUEST}" = "false" ] && npm run publish-release) || true)'
+after_success:
+- npm run report-coverage
   # ENV-GLOBAL-SECURE KEYS
-  # SECRET_KEY (oGA12)
-  # GITHUB_TOKEN (Cw/hV) 
+  # SECRET_KEY (oGA12...)
+  # GITHUB_TOKEN (Cw/hV...) 
 env:
   global:
   - secure: oGA12toJHHQpEtvLHC3smei81FJsDvkg3ZRvTeZ63ooM4a7xY4VKqPZxUS1VML1nZ+WPbIcZD+H3ayLHi/jkezM7FGZeITIp+a1BexM+4D7QJSgkZXjF7FCFY+bJXdjGbqDUWp9hVkyMYuLOyZsTLCFeaVLVslnM+yVRzbVWvm8=
