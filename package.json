@@ -12,7 +12,7 @@
     "prebuild:release": "npm run clean -s",
     "build:release": "npm run build:js -s && npm run build:appconfig-release -s",
     "build": "npm run build:js && npm run build:appconfig-local",
-    "clean": "rm -rf dist && mkdir dist",
+    "clean": "rimraf dist && mkdir dist",
     "publish-release": "npm run build:release -s && gulp publish-release"
   },
   "devDependencies": {
@@ -20,6 +20,7 @@
     "free-range-app-utils": "^0.2.1",
     "gulp": "^3.8.11",
     "gulp-frau-publisher": "^2.1.3",
-    "peanut-gallery": "0.0.4"
+    "peanut-gallery": "0.0.4",
+    "rimraf": "^2.3.2"
   }
 }
