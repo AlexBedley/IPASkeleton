@@ -13,16 +13,31 @@
     "build:release": "npm run build:js -s && npm run build:appconfig-release -s",
     "build": "npm run build:js && npm run build:appconfig-local",
     "clean": "rimraf dist && mkdir dist",
-    "publish-release": "npm run build:release -s && gulp publish-release"
+    "publish-release": "npm run build:release -s && gulp publish-release",
+    "test:example": "karma start ./test/example.karma.conf.js --single-run",
+	"test:lint": "jsxhint --exclude test/coverage/**/*.js* src test gulpfile.js",
+    "test": "npm run test:lint -s && npm run test:example"
   },
   "devDependencies": {
     "browserify": "^9.0.3",
+    "browserify-istanbul": "^0.2.1",
+    "chai": "^2.1.2",
+    "coveralls": "^2.11.2",
     "free-range-app-utils": "^0.2.1",
     "gulp": "^3.8.11",
     "gulp-frau-publisher": "^2.1.3",
-    "peanut-gallery": "0.0.4",
+    "jsxhint": "^0.12.1",
+    "karma": "^0.12.31",
+    "karma-browserify": "^4.0.0",
+    "karma-chai": "^0.1.0",
+    "karma-coverage": "0.2.6",
+    "karma-mocha": "^0.1.10",
+    "karma-phantomjs-launcher": "^0.1.4",
+    "karma-sinon": "^1.0.4",
+    "mocha": "^2.2.1",
+    "peanut-gallery": "^0.0.4",
     "rimraf": "^2.3.2",
-    "superagent": "^1.1.0",
+	"superagent": "^1.1.0",
     "superagent-d2l-session-auth": "^0.1.0"
   }
 }
