@@ -1,4 +1,4 @@
-# IPASkeleton [![Build Status](https://travis-ci.org/AlexBedley/IPASkeleton.svg?branch=master)](https://travis-ci.org/AlexBedley/IPASkeleton)
+# IPASkeleton [![Build Status](https://travis-ci.org/AlexBedley/IPASkeleton.svg?branch=master)](https://travis-ci.org/AlexBedley/IPASkeleton) [![Coverage Status](https://coveralls.io/repos/AlexBedley/IPASkeleton/badge.svg?branch=master)](https://coveralls.io/r/AlexBedley/IPASkeleton?branch=master)
 A skeleton free-range app
 
 ![ipa skeleton logo](ipa-skeleton-logo.jpg)
