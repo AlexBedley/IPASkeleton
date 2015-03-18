@@ -1,6 +1,8 @@
 # IPASkeleton [![Build Status](https://travis-ci.org/AlexBedley/IPASkeleton.svg?branch=master)](https://travis-ci.org/AlexBedley/IPASkeleton)
 A skeleton free-range app
 
+![ipa skeleton logo](ipa-skeleton-logo.jpg)
+
 ##Environment Setup
 #####Node
 [Install node v0.10.36](http://nodejs.org/dist/v0.10.36/node-v0.10.36-x86.msi). This will also install `npm`, the node package manager. You will probably have to restart to get `node` and `npm` in your `PATH`. You can run `echo %PATH%` to check.
