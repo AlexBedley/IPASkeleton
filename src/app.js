@@ -13,7 +13,8 @@ module.exports = function (parent) {
 			parent.innerHTML = 'Hello ' + user.FirstName + ' ' + user.LastName;
 			
 			if( err || !res.ok ) {
-				//handle error & consider returning promise				
+				//handle error & consider returning promise
+				parent.innerHTML = err;				
 			} 		
 		});
 };
