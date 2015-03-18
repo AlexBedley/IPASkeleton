@@ -37,6 +37,7 @@
     "mocha": "^2.2.1",
     "peanut-gallery": "^0.0.4",
     "rimraf": "^2.3.2",
+	"superagent": "^1.1.0",
     "superagent-d2l-session-auth": "^0.1.0"
   }
 }
