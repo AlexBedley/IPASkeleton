@@ -5,6 +5,10 @@ branches:
   only:
   - master
 sudo: false
+notifications:
+  email:
+    - Alex.Bedley@D2L.com
+    - Jon.Capa@D2L.com
 before_install:
 - export COMMIT_SHA=`git log -1 --pretty=format:%H`
 script:
