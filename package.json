@@ -9,7 +9,7 @@
     "build": "npm run build:js && npm run build:appconfig-local",
     "build:appconfig-local": "gulp appconfig-local",
     "build:appconfig-release": "gulp appconfig-release",
-    "build:js": "browserify -x d2l-orgunit -s IPA ./src/app.js > ./dist/app.js",
+    "build:js": "browserify -x d2l-orgunit -s IPA ./src/app.js | uglifyjs > ./dist/app.js",
     "build:release": "npm run build:js -s && npm run build:appconfig-release -s",
     "prebuild:release": "npm run clean -s",
     "report-coverage": "lcov-result-merger 'test/coverage/*/lcov/lcov.info' | coveralls",
@@ -41,6 +41,7 @@
     "peanut-gallery": "^0.0.4",
     "rimraf": "^2.3.2",
     "superagent": "^1.1.0",
-    "superagent-d2l-session-auth": "^0.1.0"
+    "superagent-d2l-session-auth": "^0.1.0",
+    "uglify-js": "^2.4.17"
   }
 }
