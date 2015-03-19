@@ -17,8 +17,8 @@ var setFraTagOption = function(options) {
 	} else {
 		options.devTag = process.env.COMMIT_SHA;
 	}
-}
-	
+};
+
 var options = {
     id: pjson.appId,
     creds: {
