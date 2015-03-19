@@ -8,16 +8,19 @@ var frau = require('free-range-app-utils'),
 	semver = require('semver');	
 
 var setFraTagOption = function(options) {
-	var travisTag = process.env.TRAVIS_TAG;	
-	if (semver.valid(travisTag) !== null) {
+	var travisTag = process.env.TRAVIS_TAG;
+		travisPullRequest = process.env.TRAVIS_PULL_REQUEST;
+		
+	if ((semver.valid(travisTag) !== null) && (travisPullRequest === false)) {
 		if (!semver.satisfies(travisTag, pjson.version)) {
-			throw "Git tag does not match packages.json version, does it need to be updated?";
+			throw "Tag does not match packages.json version, does it need to be updated?";
 		}
 		options.version = process.env.TRAVIS_TAG;		
 	} else {
 		options.devTag = process.env.COMMIT_SHA;
-	}
+	}	
 };
+
 
 var options = {
     id: pjson.appId,
