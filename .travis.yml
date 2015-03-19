@@ -12,6 +12,7 @@ notifications:
 before_install:
 - export COMMIT_SHA=`git log -1 --pretty=format:%H`
 script:
+- echo "${TRAVIS_TAG}"
 - 'npm run test && [ "$TRAVIS_SECURE_ENV_VARS" = "true" ] && export NODE_ENV=production && (([ "${TRAVIS_PULL_REQUEST}" = "false" ] && npm run publish-release) || true)'
 after_success:
 - npm run report-coverage
