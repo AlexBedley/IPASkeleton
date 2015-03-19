@@ -7,13 +7,13 @@ var frau = require('free-range-app-utils'),
 	publisher = require('gulp-frau-publisher'),
 	semver = require('semver');
 
-var setValidDevTagOrVersion = function(options) {
+var setValidDevTagOrVersion = function(options) {	
 	var travisTag = process.env.TRAVIS_TAG,
 		travisPullRequest = process.env.TRAVIS_PULL_REQUEST,
 		validSemverTag = semver.valid(travisTag);		
 	
 	if(validSemverTag && !semver.satisfies(travisTag, pjson.version)) {		
-		throw "Tag does not match packages.json version, does it need to be updated?";
+		throw "Tag " + travisTag + "does not match packages.json version, does it need to be updated?";
 	}
 	else if (validSemverTag && travisPullRequest !== false) {
 		options.version = process.env.TRAVIS_TAG;
@@ -52,8 +52,7 @@ gulp.task('appresolver', function() {
 	localAppResolver.host();
 });
 
-gulp.task('publish-release', function(cb) {
-	console.log(process.env.TRAVIS_TAG); // temp debugging
+gulp.task('publish-release', function(cb) {	
 	gulp.src('./dist/**')
 		.pipe(appPublisher.getStream())
 		.on('end', function() {
