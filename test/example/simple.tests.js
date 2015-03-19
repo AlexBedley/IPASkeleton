@@ -1,36 +1,47 @@
 var request = require('superagent');
 var app = require('../../src/app.js');
 
-describe("A test suite", function() {
-    before(function(done) {
-        sinon.stub(request, 'get', function(url) {
-            var resp = {
-                body: {
-                    FirstName: "Alex",
-                    LastName: "Bedley"
-                },
-                ok: true
-            };
-            var stub = {
-                use: function(auth) {
-                    return {
-                        end: function(cb) {
-                            cb(false, resp);
-                        }
-                    };
-                }
-            };
-            return stub;
-        });
-        done();
+var ERR = false;
+var FIRST_NAME = 'Alex';
+var LAST_NAME = 'Bedley';
+
+var stubGet = function(ok) {
+    sinon.stub(request, 'get', function(url) {
+        var resp = {
+            'body': {
+                FirstName: FIRST_NAME,
+                LastName: LAST_NAME
+            },
+            'ok': ok
+        };
+        var stub = {
+            'use': function(auth) {
+                return {
+                    'end': function(cb) {
+                        cb(ERR, resp);
+                    }
+                };
+            }
+        };
+        return stub;
     });
-    after(function(done) {
+};
+
+describe("Testing app.js", function() {
+    afterEach(function(done) {
         request.get.restore();
         done();
     });
-    it('should pass', function() {
+    it('should set innerHTML to be body', function() {
+        stubGet(true);
         var parent = {};
         app(parent);
-        expect(parent.innerHTML).to.be.equal('Hello, Alex Bedley!');
+        expect(parent.innerHTML).to.be.equal('Hello, ' + FIRST_NAME + ' ' + LAST_NAME + '!');
+    });
+    it('should set innerHTML to be err', function() {
+        stubGet(false);
+        var parent = {};
+        app(parent);
+        expect(parent.innerHTML).to.be.equal(ERR);
     });
 });
