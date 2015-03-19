@@ -13,7 +13,7 @@ module.exports = function (config) {
 				{ type: 'lcov', subdir: 'lcov' }
 			]
 		},
-		frameworks: ['browserify', 'mocha', 'chai'],
+		frameworks: ['browserify', 'mocha', 'chai', 'sinon'],
 		browserify:{ // "needed soon"
 			extensions: ['.js'],
 			transform: ['browserify-istanbul']
