@@ -5,7 +5,8 @@ var frau = require('free-range-app-utils'),
 	pjson = require('./package.json'),
 	pg = require('peanut-gallery'),
 	publisher = require('gulp-frau-publisher'),
-	semver = require('semver');
+	semver = require('semver'),
+	open = require("open");
 
 var setValidDevTagOrVersion = function(options) {
 	var travisTag = process.env.TRAVIS_TAG,
@@ -66,4 +67,8 @@ gulp.task('publish-release', function(cb) {
 			});
 
 		});
+});
+
+gulp.task('coverage', function() {
+	open('./test/coverage/example/lcov/lcov-report/index.html');
 });
