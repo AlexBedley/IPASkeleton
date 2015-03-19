@@ -1,12 +1,12 @@
 {
   "name": "IPASkeleton",
   "appId": "ipa",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Skeleton free-range app",
   "private": true,
   "scripts": {
     "prebuild": "npm run clean -s && npm run test:lint",
-	"build": "npm run build:local",
+    "build": "npm run build:local",
     "build:local": "npm run build:js && npm run build:appconfig-local",
     "build:appconfig-local": "gulp appconfig-local",
     "build:appconfig-release": "gulp appconfig-release",
