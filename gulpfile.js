@@ -8,6 +8,7 @@ var frau = require('free-range-app-utils'),
 	semver = require('semver');	
 
 var validateTravisTag = function() {	
+	console.log(process.env.TRAVIS_TAG);
 	if ( 
 		semver.valid(process.env.TRAVIS_TAG) && 
 		!semver.satisfies(process.env.TRAVIS_TAG, pjson.version)
