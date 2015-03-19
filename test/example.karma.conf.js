@@ -9,8 +9,8 @@ module.exports = function (config) {
 		coverageReporter: {
 			dir : 'test/coverage/example',
 			reporters: [
-				{ type: 'html', subdir: 'html' },
-				{ type: 'lcov', subdir: 'lcov' }
+				{ type: 'lcov', subdir: 'lcov' },
+				{ type: 'text'}
 			]
 		},
 		frameworks: ['browserify', 'mocha', 'chai', 'sinon'],
