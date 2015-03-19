@@ -8,15 +8,13 @@ var frau = require('free-range-app-utils'),
 	semver = require('semver');
 
 var setValidDevTagOrVersion = function(options) {	
-	var travisTag = process.env.TRAVIS_TAG,
-		travisPullRequest = process.env.TRAVIS_PULL_REQUEST,
-		validSemverTag = semver.valid(travisTag);		
+	var travisTag = process.env.TRAVIS_TAG;	
 	
-	if(validSemverTag && !semver.satisfies(travisTag, pjson.version)) {		
-		throw "Tag " + travisTag + "does not match packages.json version, does it need to be updated?";
-	}
-	else if (validSemverTag && travisPullRequest !== false) {
-		options.version = process.env.TRAVIS_TAG;
+	if(semver.valid(travisTag)) {		
+		if (!semver.satisfies(travisTag, pjson.version)) {
+			throw "Tag " + travisTag + "does not match packages.json version, does it need to be updated?";
+		}
+		options.version = travisTag;
 	} else {
 		options.devTag = process.env.COMMIT_SHA;
 	}
