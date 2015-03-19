@@ -10,8 +10,7 @@ var frau = require('free-range-app-utils'),
 var setValidDevTagOrVersion = function(options) {
 	var travisTag = process.env.TRAVIS_TAG,
 		travisPullRequest = process.env.TRAVIS_PULL_REQUEST,
-		validSemverTag = semver.valid(travisTag);	
-	console.log(travisTag); // temp debugging
+		validSemverTag = semver.valid(travisTag);		
 	
 	if(validSemverTag && !semver.satisfies(travisTag, pjson.version)) {		
 		throw "Tag does not match packages.json version, does it need to be updated?";
@@ -54,6 +53,7 @@ gulp.task('appresolver', function() {
 });
 
 gulp.task('publish-release', function(cb) {
+	console.log(process.env.TRAVIS_TAG); // temp debugging
 	gulp.src('./dist/**')
 		.pipe(appPublisher.getStream())
 		.on('end', function() {
@@ -65,5 +65,5 @@ gulp.task('publish-release', function(cb) {
 				cb();
 			});
 
-		});
+		});	
 });
