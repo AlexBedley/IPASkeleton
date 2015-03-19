@@ -18,7 +18,7 @@
     "report-coverage": "lcov-result-merger 'test/coverage/*/lcov/lcov.info' | coveralls",
     "clean": "rimraf dist && mkdir dist",
     "publish-release": "npm run build:release -s && gulp publish-release",
-    "test:example": "karma start ./test/example.karma.conf.js --single-run",
+    "test:example": "karma start ./test/example.karma.conf.js --single-run && echo Run 'gulp coverage' for more details.",
     "test:lint": "jsxhint --exclude test/coverage/**/*.js* src test gulpfile.js",
     "test": "npm run test:lint -s && npm run test:example"
   },
@@ -41,6 +41,7 @@
     "karma-sinon": "^1.0.4",
     "lcov-result-merger": "^1.0.2",
     "mocha": "^2.2.1",
+    "open": "0.0.5",
     "peanut-gallery": "^0.0.4",
     "rimraf": "^2.3.2",
     "semver": "^4.3.1",
