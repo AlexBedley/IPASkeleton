@@ -4,16 +4,29 @@ var frau = require('free-range-app-utils'),
 	gulp = require('gulp'),
 	pjson = require('./package.json'),
 	pg = require('peanut-gallery'),
-	publisher = require('gulp-frau-publisher');
+	publisher = require('gulp-frau-publisher'),
+	semver = require('semver');	
 
+var setFraTagOption = function(options) {
+	var travisTag = process.env.TRAVIS_TAG;	
+	if (semver.valid(travisTag) !== null) {
+		if (!semver.satisfies(travisTag, pjson.version)) {
+			throw "Git tag does not match packages.json version, does it need to be updated?";
+		}
+		options.version = process.env.TRAVIS_TAG;		
+	} else {
+		options.devTag = process.env.COMMIT_SHA;
+	}
+}
+	
 var options = {
     id: pjson.appId,
     creds: {
         "key": "AKIAJPKHVT3XFBAKFZWA",
         "secret": process.env.SECRET_KEY
-    },
-    devTag: process.env.COMMIT_SHA
+    }  
 };
+setFraTagOption(options);
 
 var appFilename = 'app.js';
 var localAppResolver = frau.localAppResolver();
@@ -50,3 +63,5 @@ gulp.task( 'publish-release', function( cb ) {
 
 		} );
 });
+
+
