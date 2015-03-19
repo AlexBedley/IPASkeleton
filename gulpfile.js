@@ -7,12 +7,16 @@ var frau = require('free-range-app-utils'),
 	publisher = require('gulp-frau-publisher'),
 	semver = require('semver');
 
-var setFraTagOption = function(options) {
-	var travisTag = process.env.TRAVIS_TAG;
-	if (semver.valid(travisTag) !== null) {
-		if (!semver.satisfies(travisTag, pjson.version)) {
-			throw "Git tag does not match packages.json version, does it need to be updated?";
-		}
+var setValidDevTagOrVersion = function(options) {
+	var travisTag = process.env.TRAVIS_TAG,
+		travisPullRequest = process.env.TRAVIS_PULL_REQUEST,
+		validSemverTag = semver.valid(travisTag);	
+	console.log(travisTag); // temp debugging
+	
+	if(validSemverTag && !semver.satisfies(travisTag, pjson.version)) {		
+		throw "Tag does not match packages.json version, does it need to be updated?";
+	}
+	else if (validSemverTag && travisPullRequest !== false) {
 		options.version = process.env.TRAVIS_TAG;
 	} else {
 		options.devTag = process.env.COMMIT_SHA;
@@ -24,9 +28,9 @@ var options = {
 	creds: {
 		"key": "AKIAJPKHVT3XFBAKFZWA",
 		"secret": process.env.SECRET_KEY
-	}
+	}  
 };
-setFraTagOption(options);
+setValidDevTagOrVersion(options);
 
 var appFilename = 'app.js';
 var localAppResolver = frau.localAppResolver();
