@@ -33,9 +33,10 @@ Now, once we've locally hosted the app (see [*Running the App*](https://github.c
 ##Publishing the App to the CDN
 Our [Travis-CI](https://travis-ci.org/AlexBedley/IPASkeleton) should be set up to automatically publish on commit to the `master` branch. To publish a new version of the app, simply submit a pull request to `master` and it will publish after the merge. To publish from your local machine (not recommended ever) you must
 
-1. Obtain the secret key (currently encrypted in `.travis.yml`) from Alex or Jon
+To publish directly to the CDN from your local machine (but you should not need to do this)
+1. Obtain the S3 secret key (currently encrypted in `.travis.yml`) from Alex or Jon
 2. Replace `options.creds.secret` (in `gulpfile.js`) with the secret key (and don't commit/push the secret key)
-3. Manually bump `options.devTag` (in `gulpfile.js`) to something unique (Travis-CI uses the commit SHA)
+3. Manually set `options.devTag` (in `gulpfile.js`) to something unique (Travis-CI uses the commit SHA) or 'options.version' if you do not want /dev/ in the URL.
 4. Run `npm run publish-release`
 5. **Don't commit** because the secret key is now in `gulpfile.js`
 
