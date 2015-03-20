@@ -8,9 +8,9 @@ var frau = require('free-range-app-utils'),
 	semver = require('semver'),
 	open = require("open");
 
-var setValidDevTagOrVersion = function(options) {	
-	var tag = process.env.GIT_CUR_TAG;		
-	if(semver.valid(tag)) {		
+var setValidDevTagOrVersion = function(options) {
+	var tag = process.env.GIT_CUR_TAG;
+	if (semver.valid(tag)) {
 		if (!semver.satisfies(tag, pjson.version)) {
 			throw "Tag '" + tag + "' does not match packages.json version, does it need to be updated?";
 		}
@@ -25,7 +25,7 @@ var options = {
 	creds: {
 		"key": "AKIAJPKHVT3XFBAKFZWA",
 		"secret": process.env.SECRET_KEY
-	}  
+	}
 };
 setValidDevTagOrVersion(options);
 
@@ -50,11 +50,13 @@ gulp.task('appresolver', function() {
 	localAppResolver.host();
 });
 
-gulp.task('publish-release', function(cb) {	
+gulp.task('publish-release', function(cb) {
 	gulp.src('./dist/**')
 		.pipe(appPublisher.getStream())
 		.on('end', function() {
-			var message = '[Deployment available online](' + appPublisher.getLocation() + appFilename + ')';
+			var message = '##### Deployment available online:\n' +
+				'#### - [app.js](' + appPublisher.getLocation() + appFilename + ')\n' +
+				'#### - [appconfig.json](' + appPublisher.getLocation() + 'appconfig.json)';
 
 			pg.comment(message, {}, function(error, response) {
 				if (error)
@@ -62,7 +64,7 @@ gulp.task('publish-release', function(cb) {
 				cb();
 			});
 
-		});	
+		});
 });
 
 gulp.task('coverage', function() {
