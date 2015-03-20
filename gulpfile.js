@@ -9,14 +9,12 @@ var frau = require('free-range-app-utils'),
 	open = require("open");
 
 var setValidDevTagOrVersion = function(options) {	
-	var travisTag = process.env.TRAVIS_TAG;	
-	console.log(travisTag); // temp troubleshooting
-	
-	if(semver.valid(travisTag)) {		
-		if (!semver.satisfies(travisTag, pjson.version)) {
-			throw "Tag " + travisTag + "does not match packages.json version, does it need to be updated?";
+	var tag = process.env.GIT_CUR_TAG;		
+	if(semver.valid(tag)) {		
+		if (!semver.satisfies(tag, pjson.version)) {
+			throw "Tag '" + tag + "' does not match packages.json version, does it need to be updated?";
 		}
-		options.version = travisTag;
+		options.version = tag;
 	} else {
 		options.devTag = process.env.COMMIT_SHA;
 	}

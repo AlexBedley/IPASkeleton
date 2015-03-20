@@ -11,6 +11,7 @@ notifications:
     - Jon.Capa@D2L.com
 before_install:
 - export COMMIT_SHA=`git log -1 --pretty=format:%H`
+- export GIT_CUR_TAG = 'git tag --points-at HEAD | head -n1'
 script:
 - printenv
 - printenv TRAVIS_TAG
