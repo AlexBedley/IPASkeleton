@@ -1,7 +1,7 @@
 {
   "name": "IPASkeleton",
   "appId": "ipa",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Skeleton free-range app",
   "private": true,
   "scripts": {
