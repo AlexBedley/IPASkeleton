@@ -35,23 +35,23 @@ Our [Travis-CI](https://travis-ci.org/AlexBedley/IPASkeleton) should be set up t
 
 Every commit to master will trigger a Travis build that includes a publish step to the CDN.  Note that every pull request will also trigger a build job, but these do not include the publish step.  Publshing can either happen to "prod" or "dev".  
 
-**To Dev**
+**To Dev**  
 URL pattern: https://s.brightspace.com/apps/{apps}/dev/{commit-sha}/app.js
 - Every commit to master without a valid semver tag is published to ../dev/..
 - For convenience, you can find the link added as a comment to the commit
 
-**To Prod**
+**To Prod**  
 URL pattern: https://s.brightspace.com/apps/{appid}/{version}/*.*
 - Every commit to master with a valid semver tag that matches the version # in packages.json is published to ../{appversion}/..
 - Steps to accomplish this are listed below - however we are considering improvements (such as auto-detecting chagnes in the packages.json version # in master)
 - You can also find the link added as a comment to the commit
 
-Steps to tag and release a new version of the FRA:
+Steps to tag and release a new version of the FRA:  
 1. Ensure you have pulled the latest commit from master locally and are pointed to it
 2. At your console, at the app's root directory, run 'npm version [<newversion> | major | minor | patch | premajor | preminor | prepatch | prerelease]' (e.g. npm version patch).  This should automatically increment your packages.json version # appropriately and create a commit with the appropriate tag locally.
 3. Push your changes directly to master (again, we are considering improvements that might include a peer review step)
 
-**Local**
+**Local**  
 To publish directly to the CDN from your local machine (but you should not need to do this):
 1. Obtain the S3 secret key (currently encrypted in `.travis.yml`) from Alex or Jon
 2. Replace `options.creds.secret` (in `gulpfile.js`) with the secret key (and don't commit/push the secret key)
