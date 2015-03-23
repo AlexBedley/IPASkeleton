@@ -63,7 +63,10 @@ gulp.task('publish-release', function(cb) {
 					return cb(JSON.stringify(error));
 				cb();
 			});
-
+		})
+		.on('error', function(error) {
+			console.log(error);
+			process.exit(1);
 		});
 });
 
