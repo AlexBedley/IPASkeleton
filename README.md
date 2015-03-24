@@ -39,7 +39,7 @@ To make changes to the app (assuming you have already cloned it - see [*Running 
 2. Install any new packages `npm install`
 3. Checkout a new branch `git checkout -b "this_is_a_branch_name"`
 4. Do your changes
-5. View your local changes in the LE (assuming you have completed the LE Integration step above)
+5. View your local changes in the LE (assuming you have completed the [LE Integration](https://github.com/AlexBedley/IPASkeleton#le-integration) step above)
   - `npm run build`
   - `gulp appresolver`
   - Navigate to `/d2l/apps/IPASkeleton/`
