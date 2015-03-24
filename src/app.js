@@ -9,7 +9,7 @@ module.exports = function(parent) {
 		.use(auth)
 		.end(function(err, res) {
 			var user = res.body;
-			parent.innerHTML = 'Hello, ' + user.FirstName + ' ' + user.LastName + '!';
+			parent.innerHTML = 'Guten Morgen, ' + user.FirstName + ' ' + user.LastName + '!';
 
 			if (err || !res.ok) {
 				//handle error & consider returning promise
