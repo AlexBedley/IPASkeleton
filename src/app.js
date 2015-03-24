@@ -1,19 +1,64 @@
 'use strict';
+var studentPredictions = require('./services/student-predictions.js'),	
+	ORG_UNIT_ID = 122034; // to do pull org unit id from page
 
-var request = require('superagent');
-var auth = require('superagent-d2l-session-auth');
+	require('./scss/app.scss');
+
+var studPredSucc = function (parent) {
+	return function(res) {		
+		var html = "<ol>";
+		res = JSON.parse(res.text);		
+		for (var x = 0,  c = res.length; x < c; x++) {			
+			console.log(res[x]); //temp
+			html += studentHtml(res[x]);
+		}
+		html += "</ol>";
+		parent.innerHTML += html;
+	}
+}
+
+var studentHtml = function(student){
+	var html = '<li class="category-'+student.PredictionCategoryId+'">';
+		html += '	<div class="student-info">';
+		html += '		<span class="name">'+student.DisplayName+'</span>';
+		html += '		<a class="s3 info" href="'+student.StudentUrl+'">More Info</a>';
+		html += '		<a class="s3 message" href="javascript:void(0);">Message</a>';
+		html += '	</div>';
+		html += '	<span class="predicted-grade">'+student.PredictionValueRounded+'</span>';		
+		html += '</li>';	
+	return html;
+}
+
+// to do improve error handling
+var studPredErr = function(err, res){
+	console.log("Encountered an api error:");
+	console.log(err);
+	console.log(res);
+}
 
 module.exports = function(parent) {
-	request
-		.get('/d2l/api/lp/1.5/users/whoami')
-		.use(auth)
-		.end(function(err, res) {
-			var user = res.body;
-			parent.innerHTML = 'Hello, ' + user.FirstName + ' ' + user.LastName + '!';
-
-			if (err || !res.ok) {
-				//handle error & consider returning promise
-				parent.innerHTML = err;
-			}
-		});
+	var MAIN_ID = 'ipa-student-predictions',
+		TOP_ID = 'ipa-top-student-predictions',
+		BOTTOM_ID = 'ipa-bottom-student-predictions',
+		html;
+			
+	html = '<div id="' + MAIN_ID + '" class="d2l-max-width">';	
+	html += '	<div id="' + TOP_ID + '" class="student-predictions" ><h3>Top Predictions</h2></div>'
+	html += '	<div id="' + BOTTOM_ID + '" class="student-predictions" ><h3>Bottom Predictions</h2></div>';
+	html += '</div>';
+	parent.innerHTML = html;
+	
+	studentPredictions(
+		ORG_UNIT_ID,
+		studPredSucc(document.getElementById(TOP_ID)),
+		studPredErr,
+		{ sortOrder: "desc", numStudents: 8 }
+	);
+	
+	studentPredictions(		
+		ORG_UNIT_ID,
+		studPredSucc(document.getElementById(BOTTOM_ID)),
+		studPredErr,
+		{ sortOrder: "asc", numStudents: 8 }
+	);
 };
