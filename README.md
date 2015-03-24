@@ -16,7 +16,7 @@ Run these commands to pull down the repo and install the dependencies. You will 
 You want to install gulp globally so you can run `gulp` on the command line.
 
     npm install -g gulp
-Run these commands to build and publish the app locally:
+Run these commands to build and host the app locally:
 
     npm run build
     gulp appresolver
