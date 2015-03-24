@@ -25,7 +25,7 @@ Now your app is available at [http://localhost:3000/app/app.js](http://localhost
 ##LE Integration
 To see it in the LE we will need to make some changes.
 
-1. Clone the [Dev AppRegistry Config](https://git.dev.d2l/users/cpacey/repos/lp-devappregistry-config/browse) into your instance's `checkout` directory
+1. Clone the [Dev AppRegistry Config](https://git.dev.d2l/users/cpacey/repos/lp-devappregistry-config/browse) into your LE instance's `checkout` directory
 2. Run a `full_all.bat` so that your instance picks up the Dev AppRegistry Config
 
 Now, once we've locally hosted the app (see [*Running the App*](https://github.com/AlexBedley/IPASkeleton#running-the-app-locally) above), we can navigate to `/d2l/apps/IPASkeleton/` and you should see `Hello, World!` in the top left corner.
