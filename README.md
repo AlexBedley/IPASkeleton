@@ -33,7 +33,7 @@ Now, once we've locally hosted the app (see [*Running the App*](https://github.c
 ##Publishing the App to the CDN
 Our [Travis-CI](https://travis-ci.org/AlexBedley/IPASkeleton) should be set up to automatically publish on commit to the `master` branch. To publish a new version of the app, simply submit a pull request to `master` and it will publish after the merge.
 
-Every commit to master will trigger a Travis build that includes a publish step to the CDN.  Note that every pull request will also trigger a build job, but these do not include the publish step.  Publshing can either happen to "prod" or "dev".  
+Every commit to master will trigger a Travis build that includes a publish step to the CDN.  Note that every pull request will also trigger a build job, but these do not include the publish step.  Publishing can either happen to "prod" or "dev".  
 
 **To Dev** 
 
