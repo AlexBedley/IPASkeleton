@@ -39,6 +39,10 @@ To make changes to the app (assuming you have already cloned it - see [*Running 
 2. Install any new packages `npm install`
 3. Checkout a new branch `git checkout -b "this_is_a_branch_name"`
 4. Do your changes
+5. View your local changes in the LE (assuming you have completed the LE Integration step above)
+  - `npm run build`
+  - `gulp appresolver`
+  - Navigate to `/d2l/apps/IPASkeleton/`
 5. Run the tests locally `npm test`
 6. Make your commits `git commit -am "This is a commit message"`
 7. Push your commits to your branch on GitHub `git push`
