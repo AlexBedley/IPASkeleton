@@ -5,7 +5,7 @@ A skeleton free-range app
 
 ##Environment Setup
 #####Node
-[Install node v0.10.36](http://nodejs.org/dist/v0.10.36/node-v0.10.36-x86.msi). This will also install `npm`, the node package manager. You will probably have to restart to get `node` and `npm` in your `PATH`. You can run `echo %PATH%` to check.
+[Install node v0.10.36](http://nodejs.org/dist/v0.10.36/node-v0.10.36-x86.msi) with the default options. This will also install `npm`, the node package manager. You will probably have to restart to get `node` and `npm` in your `PATH`. You can run `echo %PATH%` to check.
 
 ##Running the App Locally
 Run these commands to pull down the repo and install the dependencies. You will only have to do this once.
