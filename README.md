@@ -8,6 +8,8 @@ A skeleton free-range app
 [Install node v0.10.36](http://nodejs.org/dist/v0.10.36/node-v0.10.36-x86.msi) with the default options. This will also install `npm`, the node package manager. You should restart after the install.
 
 ##Running the App Locally
+Note that the following instructions are for using Git at the command-line.  However, you can accomplish the same steps using other Git clients if you prefer to (for example see the section below for details on using SourceTree).
+
 First, you must be added to the repo as a collaborator to obtain write permissions. Create a GitHub account and talk to either Jon or Alex.
 
 After you have been added as a collaborator, run these commands to pull down the repo and install the dependencies. You will only have to do this once. First, make a directory you wish to clone the repo in. I suggest `D:\\D2L\FreeRangeApps\`. Then, in that directory, run (as administrator):
@@ -23,6 +25,16 @@ Run these commands to build and host the app locally. You may want to run `gulp 
     npm run build
     gulp appresolver
 Now your app is available at [http://localhost:3000/app/app.js](http://localhost:3000/app/app.js) while your `gulp appresolver` console is running. You should see the source of a javascript file at that url.
+
+##Using SourceTree
+
+You can use SourceTree for GitHub repos rather than the command-line.  The following uses the HTTPS link to the repo, but alternatively SSH keys can be setup against your GitHub account.
+
+1. Copy the HTTPS link from the repo's homepage (https://github.com/AlexBedley/IPASkeleton.git for this repo)  
+2. In SourceTree, click on the "Clone/New" button in the top left
+3. Paste the HTTPS link in the Source Path field and select a new directory for the destination path
+4. Click clone. :)
+5. For your first push, SourceTree should prompt you for your GitHub credentials but then remember them
 
 ##LE Integration
 To see it in the LE we will need to make some changes.
@@ -52,31 +64,28 @@ To make changes to the app (assuming you have already cloned it - see [*Running 
 10. After the merge, Travis-CI will automatically publish the app to the CDN. It will also comment on the commit in GitHub with the location of the app on the CDN.
 
 ##Publishing the App to the CDN
-Our [Travis-CI](https://travis-ci.org/AlexBedley/IPASkeleton) should be set up to automatically publish on commit to the `master` branch. To publish a new version of the app, simply submit a pull request to `master` and it will publish after the merge.
+[Travis-CI](https://travis-ci.org/AlexBedley/IPASkeleton) should automatically publish on commit to the `master` branch.  The following illustrates the process:
 
-Every commit to master will trigger a Travis build that includes a publish step to the CDN.  Note that every pull request will also trigger a build job, but these do not include the publish step.  Publishing can either happen to "prod" or "dev".  
+![deploy and publish diagram](deploy-diagram.png)
 
-**To Dev** 
+**Key points from the diagram:**
 
-- URL pattern: https://s.brightspace.com/apps/{apps}/dev/{commit-sha}/app.js
-- Every commit to master without a valid semver tag is published to ../dev/..
-- For convenience, you can find the link added as a comment to the commit
+1. All commits and pull requests trigger Travis CI  
+2. However, Travis will only perform a build and test, IF the commit was to master (incluidng pull requests)  
+3. Furthermore, only commits to master will trigger a publish step to the CDN in Travis  
+4. Last point: the app will either be published with a 'dev path' or 'version path' (prod), depending on whether the commit has a valid Git version tag associated to it or not.
 
-**To Prod**
-
-- URL pattern: https://s.brightspace.com/apps/{appid}/{version}/*.*
-- Every commit to master with a valid semver tag that matches the version # in packages.json is published to ../{appversion}/..
-- Steps to accomplish this are listed below - however we are considering improvements (such as auto-detecting chagnes in the packages.json version # in master)
-- You can also find the link added as a comment to the commit
-
-**Steps to tag and release a new version of the FRA:**
+**Steps to tag and publish a new version of the FRA:**
 
 1. Ensure you have pulled the latest commit from master locally and are pointed to it  
-2. At your console, at the app's root directory, run 'npm version [<newversion> | major | minor | patch | premajor | preminor | prepatch | prerelease]' (e.g. npm version patch).  This should automatically increment your packages.json version # appropriately and create a commit with the appropriate tag locally.  
-3. Push your changes directly to master (again, we are considering improvements that might include a peer review step)
+2. From your console at the app's root directory, run 'npm version [<newversion> | major | minor | patch | premajor | preminor | prepatch | prerelease]'  
+(for example, 'npm version patch').  This will increment the version # in packages.json and also create a git commit with a tag matching the new version #. 
+3. Push your changes directly to master
+
+We are considering improvements to this process that may include a peer review step.
 
 **From Local**  
-To publish directly to the CDN from your local machine (but you should not ever need to do this) you should:
+You should not publish directly to the CDN from your local machine.  However, if this was necessary the following steps can be followed:
 
 1. Obtain the S3 secret key (currently encrypted in `.travis.yml`) from Alex or Jon  
 2. Replace `options.creds.secret` (in `gulpfile.js`) with the secret key (and don't commit/push the secret key)  
