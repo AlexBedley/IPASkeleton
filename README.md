@@ -64,16 +64,16 @@ To make changes to the app (assuming you have already cloned it - see [*Running 
 10. After the merge, Travis-CI will automatically publish the app to the CDN. It will also comment on the commit in GitHub with the location of the app on the CDN.
 
 ##Publishing the App to the CDN
-[Travis-CI](https://travis-ci.org/AlexBedley/IPASkeleton) should automatically publish on commitd to the `master` branch.  The following illustrates the process:
+[Travis-CI](https://travis-ci.org/AlexBedley/IPASkeleton) should automatically publish on commit to the `master` branch.  The following illustrates the process:
 
 ![deploy and publish diagram](deploy-diagram.png)
 
 **Key points from the diagram:**
 
 1. All commits and pull requests trigger Travis CI  
-2. However, Travis will only perform a build and test if the commit was to master (incluidng pull requests)  
-3. Only commits to master will trigger a publish step to the CDN in Travis  
-4. The app will either be published with a dev path or version path, depending on whether the commit has a valid version tag associated to it or not.
+2. However, Travis will only perform a build and test, IF the commit was to master (incluidng pull requests)  
+3. Furthermore, only commits to master will trigger a publish step to the CDN in Travis  
+4. Last point: the app will either be published with a 'dev path' or 'version path' (prod), depending on whether the commit has a valid Git version tag associated to it or not.
 
 **Steps to tag and publish a new version of the FRA:**
 
