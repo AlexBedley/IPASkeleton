@@ -5,10 +5,12 @@ A skeleton free-range app
 
 ##Environment Setup
 #####Node
-[Install node v0.10.36](http://nodejs.org/dist/v0.10.36/node-v0.10.36-x86.msi) with the default options. This will also install `npm`, the node package manager. You will probably have to restart to get `node` and `npm` in your `PATH`. You can run `echo %PATH%` to check.
+[Install node v0.10.36](http://nodejs.org/dist/v0.10.36/node-v0.10.36-x86.msi) with the default options. This will also install `npm`, the node package manager. You should restart after the install.
 
 ##Running the App Locally
-Run these commands to pull down the repo and install the dependencies. You will only have to do this once.
+First, you must be added to the repo as a collaborator to obtain write permissions. Create a GitHub account and talk to either Jon or Alex.
+
+After you have been added as a collaborator, run these commands to pull down the repo and install the dependencies. You will only have to do this once. First, make a directory you wish to clone the repo in. I suggest `D:\\D2L\FreeRangeApps\`. Then, in that directory, run (as administrator):
 
     git clone git@github.com:AlexBedley/IPASkeleton.git
     cd IPASkeleton
@@ -16,11 +18,11 @@ Run these commands to pull down the repo and install the dependencies. You will 
 You want to install gulp globally so you can run `gulp` on the command line.
 
     npm install -g gulp
-Run these commands to build and host the app locally:
+Run these commands to build and host the app locally. You may want to run `gulp appresolver` in a different window because you will not be able to issue new commands while it is running.
 
     npm run build
     gulp appresolver
-Now your app is available at [http://localhost:3000/app/app.js](http://localhost:3000/app/app.js) while your console is running. You might want to run `gulp appresolver` in a new console for this reason.
+Now your app is available at [http://localhost:3000/app/app.js](http://localhost:3000/app/app.js) while your `gulp appresolver` console is running. You should see the source of a javascript file at that url.
 
 ##LE Integration
 To see it in the LE we will need to make some changes.
@@ -28,7 +30,26 @@ To see it in the LE we will need to make some changes.
 1. Clone the [Dev AppRegistry Config](https://git.dev.d2l/users/cpacey/repos/lp-devappregistry-config/browse) into your LE instance's `checkout` directory
 2. Run a `full_all.bat` so that your instance picks up the Dev AppRegistry Config
 
-Now, once we've locally hosted the app (see [*Running the App*](https://github.com/AlexBedley/IPASkeleton#running-the-app-locally) above), we can navigate to `/d2l/apps/IPASkeleton/` and you should see `Hello, World!` in the top left corner.
+Now, once we've locally hosted the app (see [*Running the App Locally*](https://github.com/AlexBedley/IPASkeleton#running-the-app-locally) above), we can navigate to `/d2l/apps/IPASkeleton/` and you should see `Guten Morgen, D2L Support!` in the top left corner.
+
+##Making Changes
+To make changes to the app (assuming you have already cloned it - see [*Running the App Locally*](https://github.com/AlexBedley/IPASkeleton#running-the-app-locally) above)
+
+1. Pull changes from others `git pull`
+2. Install any new packages `npm install`
+3. Checkout a new branch `git checkout -b "this_is_a_branch_name"`
+4. Do your changes
+5. View your local changes in the LE (assuming you have completed the [LE Integration](https://github.com/AlexBedley/IPASkeleton#le-integration) step above)
+  - `npm run build`
+  - `gulp appresolver`
+  - Navigate to `/d2l/apps/IPASkeleton/`
+5. Run the tests locally `npm test`
+6. Make your commits `git commit -am "This is a commit message"`
+7. Push your commits to your branch on GitHub `git push`
+8. Log onto GitHub and [create a Pull Request](https://help.github.com/articles/creating-a-pull-request/). Then you can request reviewers by [assigning people](https://help.github.com/articles/assigning-issues-and-pull-requests-to-other-github-users/) to the pull request.
+9. Travis-CI will automatically run the tests on every commit to a pull request. Once the tests have completed, the result is shown on the GitHub pull request page.
+9. Pull request gets reviewed and merged
+10. After the merge, Travis-CI will automatically publish the app to the CDN. It will also comment on the commit in GitHub with the location of the app on the CDN.
 
 ##Publishing the App to the CDN
 Our [Travis-CI](https://travis-ci.org/AlexBedley/IPASkeleton) should be set up to automatically publish on commit to the `master` branch. To publish a new version of the app, simply submit a pull request to `master` and it will publish after the merge.
@@ -62,19 +83,6 @@ To publish directly to the CDN from your local machine (but you should not ever 
 3. Manually set `options.devTag` (in `gulpfile.js`) to something unique (Travis-CI uses the commit SHA) or 'options.version' if you do not want /dev/ in the URL.  
 4. Run `npm run publish-release`  
 5. **Don't commit** because the secret key is now in `gulpfile.js`
-
-##Making Changes
-To make changes to the app (assuming you have already [cloned it](https://github.com/AlexBedley/IPASkeleton#running-the-app-locally))
-
-1. Pull changes from others `git pull`
-2. Install any new packages `npm install`
-3. Checkout a new branch `git checkout -b "branch_name"`
-4. Do your changes
-5. Make your commits `git commit -am "This is a commit message"`
-6. Push your commits to your branch `git push`
-7. Log onto GitHub and create a Pull Request, tagging people you would like to review, ie "@AlexBedley"
-8. Pull request gets merged by reviewers
-9. Travis-CI automatically builds and publishes after merge. Travis-CI will comment on the pull request commit with the url that points to your app.
 
 ##Adding new secure variables to .travis.yml
 You will need to do this if we need to add a new secret variable (API key, etc.) to the build process.
