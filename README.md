@@ -11,7 +11,7 @@ A skeleton free-range app
 First, you must be added to the repo as a collaborator to obtain write permissions. Create a GitHub account and talk to either Jon or Alex. Then you can clone the repo using SourceTree.
 
 ####Clone via SourceTree
-You can use SourceTree for GitHub repos.  The following uses the HTTPS link to the repo, but alternatively SSH keys can be setup against your GitHub account.
+You can use SourceTree for GitHub repos. The following uses the HTTPS link to the repo, but alternatively SSH keys can be setup against your GitHub account.
 
 1. Copy the HTTPS link from the repo's homepage (https://github.com/AlexBedley/IPASkeleton.git for this repo)  
 2. In SourceTree, click on the "Clone/New" button in the top left
@@ -23,6 +23,9 @@ You can use SourceTree for GitHub repos.  The following uses the HTTPS link to t
 
     cd IPASkeleton
     npm install
+
+> If you are getting an ENOENT error running `npm install`, try manually creating `C:\Users\<user>\AppData\Roaming\npm` and making sure you are running as administrator
+
 You want to install gulp globally so you can run `gulp` on the command line.
 
     npm install -g gulp
