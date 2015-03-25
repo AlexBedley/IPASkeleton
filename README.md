@@ -8,7 +8,7 @@ A skeleton free-range app
 [Install node v0.10.36](http://nodejs.org/dist/v0.10.36/node-v0.10.36-x86.msi) with the default options. This will also install `npm`, the node package manager. You should restart after the install.
 
 ##Running the App Locally
-Note that the following instructions are for using Git at the command -ine.  However, you can accomplish the same steps using other Git clients if you prefer to (see the section below for details on using Source Tree).
+Note that the following instructions are for using Git at the command-line.  However, you can accomplish the same steps using other Git clients if you prefer to (for example see the section below for details on using SourceTree).
 
 First, you must be added to the repo as a collaborator to obtain write permissions. Create a GitHub account and talk to either Jon or Alex.
 
@@ -26,9 +26,15 @@ Run these commands to build and host the app locally. You may want to run `gulp 
     gulp appresolver
 Now your app is available at [http://localhost:3000/app/app.js](http://localhost:3000/app/app.js) while your `gulp appresolver` console is running. You should see the source of a javascript file at that url.
 
-##Using Sourcetree
+##Using SourceTree
 
-to be done
+You can use SourceTree for GitHub repos rather than the command-line.  The following uses the HTTPS link to the repo, but alternatively SSH keys can be setup against your GitHub account.
+
+1. Copy the HTTPS link from the repo's homepage (https://github.com/AlexBedley/IPASkeleton.git for this repo)  
+2. In SourceTree, click on the "Clone/New" button in the top left
+3. Paste the HTTPS link in the Source Path field and select a new directory for the destination path
+4. Click clone. :)
+5. For your first push, SourceTree should prompt you for your GitHub credentials but then remember them
 
 ##LE Integration
 To see it in the LE we will need to make some changes.
@@ -60,13 +66,13 @@ To make changes to the app (assuming you have already cloned it - see [*Running 
 ##Publishing the App to the CDN
 [Travis-CI](https://travis-ci.org/AlexBedley/IPASkeleton) should automatically publish on commitd to the `master` branch.  The following illustrates the process:
 
-![ipa skeleton logo](deploy-diagram.jpg)
+![deploy and publish diagram](deploy-diagram.png)
 
-**Key points:**
+**Key points from the diagram:**
 
 1. All commits and pull requests trigger Travis CI  
-2. However, Travis will only perform a build and test if the commit was to master (incluidng pull requests)
-3. Only commits to master will trigger a publish step to the CDN in Travis
+2. However, Travis will only perform a build and test if the commit was to master (incluidng pull requests)  
+3. Only commits to master will trigger a publish step to the CDN in Travis  
 4. The app will either be published with a dev path or version path, depending on whether the commit has a valid version tag associated to it or not.
 
 **Steps to tag and publish a new version of the FRA:**
