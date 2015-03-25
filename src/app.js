@@ -36,17 +36,32 @@ var studPredErr = function(err, res){
 	console.log(res);
 }
 
+var assignParentBreakpoint = function(parent) {
+	var width = parent.offsetWidth,
+		breakpoints = {
+			957: "bp-1",
+			851: "bp-2",
+			741: "bp-3",
+			621: "bp-4"
+		};
+	for (var resolution in breakpoints) {
+		console.log (resolution + ': ' + breakpoints[resolution]);
+	}
+}
+
 module.exports = function(parent) {
-	var MAIN_ID = 'ipa-student-predictions',
+	var MAIN_ID = 'ipa-student-predictions', // to do create unique instance namespace
 		TOP_ID = 'ipa-top-student-predictions',
 		BOTTOM_ID = 'ipa-bottom-student-predictions',
 		html;
-			
+
+	assignParentBreakpoint(parent);
+		
 	html = '<div id="' + MAIN_ID + '" class="d2l-max-width">';	
 	html += '	<div id="' + TOP_ID + '" class="student-predictions" ><h3>Top Predictions</h2></div>'
 	html += '	<div id="' + BOTTOM_ID + '" class="student-predictions" ><h3>Bottom Predictions</h2></div>';
 	html += '</div>';
-	parent.innerHTML = html;
+	parent.innerHTML = html;	
 	
 	studentPredictions(
 		ORG_UNIT_ID,
