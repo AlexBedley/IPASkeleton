@@ -8,15 +8,24 @@ A skeleton free-range app
 [Install node v0.10.36](http://nodejs.org/dist/v0.10.36/node-v0.10.36-x86.msi) with the default options. This will also install `npm`, the node package manager. You should restart after the install.
 
 ##Running the App Locally
-Note that the following instructions are for using Git at the command-line.  However, you can accomplish the same steps using other Git clients if you prefer to (for example see the section below for details on using SourceTree).
+First, you must be added to the repo as a collaborator to obtain write permissions. Create a GitHub account and talk to either Jon or Alex. Then you can clone the repo using SourceTree.
 
-First, you must be added to the repo as a collaborator to obtain write permissions. Create a GitHub account and talk to either Jon or Alex.
+####Clone via SourceTree
+You can use SourceTree for GitHub repos. The following uses the HTTPS link to the repo, but alternatively SSH keys can be setup against your GitHub account.
 
-After you have been added as a collaborator, run these commands to pull down the repo and install the dependencies. You will only have to do this once. First, make a directory you wish to clone the repo in. I suggest `D:\\D2L\FreeRangeApps\`. Then, in that directory, run (as administrator):
+1. Copy the HTTPS link from the repo's homepage (https://github.com/AlexBedley/IPASkeleton.git for this repo)  
+2. In SourceTree, click on the "Clone/New" button in the top left
+3. Paste the HTTPS link in the Source Path field and select a new directory for the destination path
+4. Click clone. :)
+5. For your first push, SourceTree should prompt you for your GitHub credentials but then remember them
 
-    git clone git@github.com:AlexBedley/IPASkeleton.git
+####Initial Build
+
     cd IPASkeleton
     npm install
+
+> If you are getting an ENOENT error running `npm install`, try manually creating `C:\Users\<user>\AppData\Roaming\npm` and making sure you are running as administrator
+
 You want to install gulp globally so you can run `gulp` on the command line.
 
     npm install -g gulp
@@ -25,16 +34,6 @@ Run these commands to build and host the app locally. You may want to run `gulp 
     npm run build
     gulp appresolver
 Now your app is available at [http://localhost:3000/app/app.js](http://localhost:3000/app/app.js) while your `gulp appresolver` console is running. You should see the source of a javascript file at that url.
-
-##Using SourceTree
-
-You can use SourceTree for GitHub repos rather than the command-line.  The following uses the HTTPS link to the repo, but alternatively SSH keys can be setup against your GitHub account.
-
-1. Copy the HTTPS link from the repo's homepage (https://github.com/AlexBedley/IPASkeleton.git for this repo)  
-2. In SourceTree, click on the "Clone/New" button in the top left
-3. Paste the HTTPS link in the Source Path field and select a new directory for the destination path
-4. Click clone. :)
-5. For your first push, SourceTree should prompt you for your GitHub credentials but then remember them
 
 ##LE Integration
 To see it in the LE we will need to make some changes.
@@ -58,7 +57,7 @@ To make changes to the app (assuming you have already cloned it - see [*Running 
 5. Run the tests locally `npm test`
 6. Make your commits `git commit -am "This is a commit message"`
 7. Push your commits to your branch on GitHub `git push`
-8. Log onto GitHub and [create a Pull Request](https://help.github.com/articles/creating-a-pull-request/). Then you can request reviewers by [assigning people](https://help.github.com/articles/assigning-issues-and-pull-requests-to-other-github-users/) to the pull request.
+8. Log onto GitHub and [create a Pull Request](https://help.github.com/articles/creating-a-pull-request/). Then you can request reviewers by [mentioning people](https://github.com/blog/821) on the pull request description (ie @AlexBedley).
 9. Travis-CI will automatically run the tests on every commit to a pull request. Once the tests have completed, the result is shown on the GitHub pull request page.
 9. Pull request gets reviewed and merged
 10. After the merge, Travis-CI will automatically publish the app to the CDN. It will also comment on the commit in GitHub with the location of the app on the CDN.
