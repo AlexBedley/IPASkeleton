@@ -57,7 +57,7 @@ To make changes to the app (assuming you have already cloned it - see [*Running 
 5. Run the tests locally `npm test`
 6. Make your commits `git commit -am "This is a commit message"`
 7. Push your commits to your branch on GitHub `git push`
-8. Log onto GitHub and [create a Pull Request](https://help.github.com/articles/creating-a-pull-request/). Then you can request reviewers by [assigning people](https://help.github.com/articles/assigning-issues-and-pull-requests-to-other-github-users/) to the pull request.
+8. Log onto GitHub and [create a Pull Request](https://help.github.com/articles/creating-a-pull-request/). Then you can request reviewers by [mentioning people](https://github.com/blog/821) on the pull request description (ie @AlexBedley).
 9. Travis-CI will automatically run the tests on every commit to a pull request. Once the tests have completed, the result is shown on the GitHub pull request page.
 9. Pull request gets reviewed and merged
 10. After the merge, Travis-CI will automatically publish the app to the CDN. It will also comment on the commit in GitHub with the location of the app on the CDN.
