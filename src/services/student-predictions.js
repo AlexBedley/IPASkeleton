@@ -15,7 +15,7 @@ module.exports = function(orgUnitId, succCallback, errCallback, options) {
 	};
 		
 	request
-		.get(String.replace(URI_STUDENT_PREDICTIONS,'{orgUnitId}',orgUnitId))
+		.get(URI_STUDENT_PREDICTIONS.replace('{orgUnitId}',orgUnitId))
 		.query(queryParams)
 		.use(auth)
 		.end(function(err, res) {
