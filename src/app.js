@@ -1,15 +1,14 @@
 'use strict';
-var studentPredictions = require('./services/student-predictions.js'),	
+var studentPredictions = require('./services/student-predictions.js'),
 	ORG_UNIT_ID = 122034; // to do pull org unit id from page
 
 	require('./scss/app.scss');
 
 var studPredSucc = function (parent) {
-	return function(res) {		
+	return function(res) {
 		var html = "<ol>";
-		res = JSON.parse(res.text);		
-		for (var x = 0,  c = res.length; x < c; x++) {			
-			console.log(res[x]); //temp
+		res = JSON.parse(res.text);
+		for (var x = 0,  c = res.length; x < c; x++) {
 			html += studentHtml(res[x]);
 		}
 		html += "</ol>";
@@ -18,14 +17,13 @@ var studPredSucc = function (parent) {
 }
 
 var studentHtml = function(student){
-	var html = '<li class="category-'+student.PredictionCategoryId+'">';
+	var html = '<li class="category-'+student.Prediction.CategoryId+'">';
 		html += '	<div class="student-info">';
-		html += '		<span class="name">'+student.DisplayName+'</span>';
-		html += '		<a class="s3 info" href="'+student.StudentUrl+'">More Info</a>';
-		html += '		<a class="s3 message" href="javascript:void(0);">Message</a>';
+		html += '		<span class="name">'+student.Profile.Name+'</span>';
+		html += '		<a class="s3 info" href="'+student.Profile.ProfileUrl+'">More Info</a>';
 		html += '	</div>';
-		html += '	<span class="predicted-grade">'+student.PredictionValueRounded+'</span>';		
-		html += '</li>';	
+		html += '	<span class="predicted-grade">'+student.Prediction.RoundedValue+'</span>';
+		html += '</li>';
 	return html;
 }
 
@@ -37,15 +35,18 @@ var studPredErr = function(err, res){
 }
 
 var assignParentBreakpoint = function(parent) {
-	var width = parent.offsetWidth,
+	var parentWidth = parent.offsetWidth,
 		breakpoints = {
 			957: "bp-1",
 			851: "bp-2",
 			741: "bp-3",
 			621: "bp-4"
 		};
-	for (var resolution in breakpoints) {
-		console.log (resolution + ': ' + breakpoints[resolution]);
+	for (var breakpointWidth in breakpoints) {
+		if (parentWidth < breakpointWidth) {
+			console.log("bp "+breakpointWidth);
+			parent.className += ' '+breakpoints[breakpointWidth];
+		}
 	}
 }
 
@@ -55,22 +56,22 @@ module.exports = function(parent) {
 		BOTTOM_ID = 'ipa-bottom-student-predictions',
 		html;
 
-	assignParentBreakpoint(parent);
-		
-	html = '<div id="' + MAIN_ID + '" class="d2l-max-width">';	
+	html = '<div id="' + MAIN_ID + '" class="d2l-max-width">';
 	html += '	<div id="' + TOP_ID + '" class="student-predictions" ><h3>Top Predictions</h2></div>'
 	html += '	<div id="' + BOTTOM_ID + '" class="student-predictions" ><h3>Bottom Predictions</h2></div>';
 	html += '</div>';
-	parent.innerHTML = html;	
-	
+	parent.innerHTML = html;
+
+	assignParentBreakpoint(document.getElementById(TOP_ID));
 	studentPredictions(
 		ORG_UNIT_ID,
 		studPredSucc(document.getElementById(TOP_ID)),
 		studPredErr,
 		{ sortOrder: "desc", numStudents: 8 }
 	);
-	
-	studentPredictions(		
+
+	assignParentBreakpoint(document.getElementById(BOTTOM_ID));
+	studentPredictions(
 		ORG_UNIT_ID,
 		studPredSucc(document.getElementById(BOTTOM_ID)),
 		studPredErr,
