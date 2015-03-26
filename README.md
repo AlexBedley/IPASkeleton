@@ -5,7 +5,7 @@ A skeleton free-range app
 
 ##Environment Setup
 #####Node
-[Install node v0.10.36](http://nodejs.org/dist/v0.10.36/node-v0.10.36-x86.msi) with the default options. This will also install `npm`, the node package manager. You should restart after the install.
+[Install node v0.10.36](http://nodejs.org/dist/v0.10.36/node-v0.10.36-x86.msi) with the default options. This will also install `npm`, the node package manager. There is a small bug in this version of node for Windows so you will have to manually create the folder `C:\Users\<user>\AppData\Roaming\npm`. You should restart afterwards.
 
 ##Running the App Locally
 First, you must be added to the repo as a collaborator to obtain write permissions. Create a GitHub account and talk to either Jon or Alex. Then you can clone the repo using SourceTree.
@@ -24,7 +24,7 @@ You can use SourceTree for GitHub repos. The following uses the HTTPS link to th
     cd IPASkeleton
     npm install
 
-> If you are getting an ENOENT error running `npm install`, try manually creating `C:\Users\<user>\AppData\Roaming\npm` and making sure you are running as administrator
+> If you are getting an EPERM error after npm tries to install phantomjs (as part of `npm install`), you will have to restart.
 
 You want to install gulp globally so you can run `gulp` on the command line.
 
