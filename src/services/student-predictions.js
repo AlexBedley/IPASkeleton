@@ -1,7 +1,7 @@
 var request = require('superagent'),
 	auth = require('superagent-d2l-session-auth'),
 	extend = require('extend'),
-	URI_STUDENT_PREDICTIONS = '/d2l/api/ap/1.0/s3/courses/{orgUnitId}/students/predictions/',
+	URI_STUDENT_PREDICTIONS = '/d2l/api/ipa/unstable/courses/{orgUnitId}/students/predictions/',
 	DEFAULT_OPTIONS = {
 		sortOrder: "desc",
 		numStudents: 10		
