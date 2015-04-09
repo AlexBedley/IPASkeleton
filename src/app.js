@@ -1,8 +1,13 @@
 'use strict';
 var studentPredictions = require('./services/student-predictions.js'),
-	ORG_UNIT_ID = 122034; // to do pull org unit id from page
+	d2lOrgUnit = require('d2l-orgunit'),
+	TEST_ORG_UNIT_ID = 122042;
 
-	require('./scss/app.scss');
+require('./scss/app.scss');
+
+var getOrgUnitId = function() {
+	return (d2lOrgUnit.OrgUnitId !== d2lOrgUnit.OrgId) ? d2lOrgUnit.OrgUnitId : TEST_ORG_UNIT_ID;
+}
 
 var studPredSucc = function (parent) {
 	return function(res) {
@@ -51,10 +56,12 @@ var assignParentBreakpoint = function(parent) {
 }
 
 module.exports = function(parent) {
-	var MAIN_ID = 'ipa-student-predictions', // to do create unique instance namespace
-		TOP_ID = 'ipa-top-student-predictions',
-		BOTTOM_ID = 'ipa-bottom-student-predictions',
-		html;
+	var baseId = parent.id,
+		MAIN_ID = baseId+'-ipa-student-predictions', // to do create unique instance namespace
+		TOP_ID = baseId+'-ipa-top-student-predictions',
+		BOTTOM_ID = baseId+'-ipa-bottom-student-predictions',
+		html,
+		orgUnitId = getOrgUnitId();
 
 	html = '<div id="' + MAIN_ID + '" class="d2l-max-width">';
 	html += '	<div id="' + TOP_ID + '" class="student-predictions" ><h3>Top Predictions</h2></div>'
@@ -64,7 +71,7 @@ module.exports = function(parent) {
 
 	assignParentBreakpoint(document.getElementById(TOP_ID));
 	studentPredictions(
-		ORG_UNIT_ID,
+		orgUnitId,
 		studPredSucc(document.getElementById(TOP_ID)),
 		studPredErr,
 		{ sortOrder: "desc", numStudents: 8 }
@@ -72,7 +79,7 @@ module.exports = function(parent) {
 
 	assignParentBreakpoint(document.getElementById(BOTTOM_ID));
 	studentPredictions(
-		ORG_UNIT_ID,
+		orgUnitId,
 		studPredSucc(document.getElementById(BOTTOM_ID)),
 		studPredErr,
 		{ sortOrder: "asc", numStudents: 8 }

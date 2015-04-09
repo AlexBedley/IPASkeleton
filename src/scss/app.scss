@@ -1,92 +1,90 @@
-#ipa-student-predictions {
-	div.student-predictions {
-		font-size: 1.2em;
-		@media screen and (max-width: 946px){
-			font-size: 1.15em;
-		}
-		ol {
-			list-style-type: none;
-			padding: 0;
-			margin: 0;
-			li {
-				display: inline-block;
-				width: 20%;
-				margin: 0 1em 1em 0;
-				padding: 0.4em 0.4em 0.4em 0.6em;
-				vertical-align: top;
-				@media screen and (max-width: 850px){
-					width: 28%;
-				}
-				@media screen and (max-width: 740px){
-					width: 43%;
-				}
-				@media screen and (max-width: 620px){
-					width: 95%;
-					margin-right: 0;
-				}
-				div.student-info {
-					display: inline-block;
-					span.name {
-						display: block;
-						font-size: 0.9em;
-						font-weight: bold;
-						margin: 0 0 0.1em 0;
-					}
-					a.s3 {
-						display: inline-block;
-						font-size: 0.75em;
-						color: #000;
-						margin: 0 1em 0.2em 0;
-					}
-				}
-				span.predicted-grade {
-					float: left;
-					min-width: 1.3em;
-					margin: 0.15em 0.5em 0 0;
-					padding: 0.5em;
-					font-weight: bold;
-					color: #fff;
-					text-align: center;
-				}
-			}
-			li.category-1 {
-				background-color: #f1f4f1;
-				span.predicted-grade {
-					background-color: #37c245;
-				}
-			}
-			li.category-2 {
-				background-color: #f5efeb;
-				span.predicted-grade {
-					background-color: #e87f24;
-				}
-			}
-			li.category-3 {
-				background-color: #f3eceb;
-				span.predicted-grade {
-					background-color: #c03a2e;
-				}
-			}
-		}
-	}
-	div.student-predictions.bp-1{
+div.student-predictions {
+	font-size: 1.2em;
+	@media screen and (max-width: 946px){
 		font-size: 1.15em;
 	}
-	div.student-predictions.bp-2{
-		ol li {
-			width: 28%;
+	ol {
+		list-style-type: none;
+		padding: 0;
+		margin: 0;
+		li {
+			display: inline-block;
+			width: 20%;
+			margin: 0 1em 1em 0;
+			padding: 0.4em 0.4em 0.4em 0.6em;
+			vertical-align: top;
+			@media screen and (max-width: 850px){
+				width: 28%;
+			}
+			@media screen and (max-width: 740px){
+				width: 43%;
+			}
+			@media screen and (max-width: 620px){
+				width: 95%;
+				margin-right: 0;
+			}
+			div.student-info {
+				display: inline-block;
+				span.name {
+					display: block;
+					font-size: 0.9em;
+					font-weight: bold;
+					margin: 0 0 0.1em 0;
+				}
+				a.s3 {
+					display: inline-block;
+					font-size: 0.75em;
+					color: #000;
+					margin: 0 1em 0.2em 0;
+				}
+			}
+			span.predicted-grade {
+				float: left;
+				min-width: 1.3em;
+				margin: 0.15em 0.5em 0 0;
+				padding: 0.5em;
+				font-weight: bold;
+				color: #fff;
+				text-align: center;
+			}
+		}
+		li.category-1 {
+			background-color: #f1f4f1;
+			span.predicted-grade {
+				background-color: #37c245;
+			}
+		}
+		li.category-2 {
+			background-color: #f5efeb;
+			span.predicted-grade {
+				background-color: #e87f24;
+			}
+		}
+		li.category-3 {
+			background-color: #f3eceb;
+			span.predicted-grade {
+				background-color: #c03a2e;
+			}
 		}
 	}
-	div.student-predictions.bp-3{
-		ol li {
-			width: 43%;
-		}
+}
+div.student-predictions.bp-1{
+	font-size: 1.15em;
+}
+div.student-predictions.bp-2{
+	ol li {
+		width: 28%;
 	}
-	div.student-predictions.bp-4{
-		ol li {
-			width: 95%;
-			margin-right: 0;
-			margin-bottom: 0.5em;
-		}
+}
+div.student-predictions.bp-3{
+	ol li {
+		width: 43%;
+	}
+}
+div.student-predictions.bp-4{
+	ol li {
+		width: 95%;
+		margin-right: 0;
+		margin-bottom: 0.5em;
 	}
 }
