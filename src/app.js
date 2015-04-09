@@ -1,12 +1,20 @@
 'use strict';
 var studentPredictions = require('./services/student-predictions.js'),
 	d2lOrgUnit = require('d2l-orgunit'),
-	TEST_ORG_UNIT_ID = 122042;
+	d2lOptions = require('d2l-options'),
+	extend = require('extend'),
+	options = {},
+	DEFAULT_OPTIONS = {
+		numStudents: 8,
+		orgUnitId: 122042
+	};
 
 require('./scss/app.scss');
 
+options = extend(DEFAULT_OPTIONS, d2lOptions);
+
 var getOrgUnitId = function() {
-	return (d2lOrgUnit.OrgUnitId !== d2lOrgUnit.OrgId) ? d2lOrgUnit.OrgUnitId : TEST_ORG_UNIT_ID;
+	return (d2lOrgUnit.OrgUnitId !== d2lOrgUnit.OrgId) ? d2lOrgUnit.OrgUnitId : options.orgUnitId;
 }
 
 var studPredSucc = function (parent) {
@@ -74,7 +82,7 @@ module.exports = function(parent) {
 		orgUnitId,
 		studPredSucc(document.getElementById(TOP_ID)),
 		studPredErr,
-		{ sortOrder: "desc", numStudents: 8 }
+		{ sortOrder: "desc", numStudents: options.numStudents }
 	);
 
 	assignParentBreakpoint(document.getElementById(BOTTOM_ID));
@@ -82,6 +90,6 @@ module.exports = function(parent) {
 		orgUnitId,
 		studPredSucc(document.getElementById(BOTTOM_ID)),
 		studPredErr,
-		{ sortOrder: "asc", numStudents: 8 }
+		{ sortOrder: "asc", numStudents: options.numStudents  }
 	);
 };
