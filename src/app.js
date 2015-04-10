@@ -1,7 +1,7 @@
 'use strict';
 var studentPredictions = require('./services/student-predictions.js'),
 	d2lOrgUnit = require('d2l-orgunit'),
-	d2lOptions = require('d2l-options'),
+	d2lOptions = require('d2l-IPASkeleton-options'),
 	extend = require('extend'),
 	options = {},
 	DEFAULT_OPTIONS = {
