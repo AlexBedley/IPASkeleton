@@ -1,0 +1,9 @@
+{
+	"node": true,
+	"mocha": true,
+	"globalstrict": true,
+	"globals": {
+		"sinon": true,
+		"expect": true
+	}
+}

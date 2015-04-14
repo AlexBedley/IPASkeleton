@@ -1,3 +1,4 @@
+'use strict';
 var request = require('superagent');
 var app = require('../../src/app.js');
 

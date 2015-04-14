@@ -6,7 +6,9 @@ var frau = require('free-range-app-utils'),
 	pg = require('peanut-gallery'),
 	publisher = require('gulp-frau-publisher'),
 	semver = require('semver'),
-	open = require("open");
+	open = require("open"),
+	del = require('del'),
+	jshint = require('gulp-jshint');
 
 var setValidDevTagOrVersion = function(options) {
 	var tag = process.env.GIT_CUR_TAG;
@@ -72,4 +74,15 @@ gulp.task('publish-release', function(cb) {
 
 gulp.task('coverage', function() {
 	open('./test/coverage/example/lcov/lcov-report/index.html');
+});
+
+gulp.task('clean', function(cb) {
+	del(['./dist/**/*'], cb);
+});
+
+gulp.task('lint', function() {
+	return gulp.src(['./src/**/*.js', './test/**/*.js', './gulpfile.js', '!./test/coverage/**/*'])
+		.pipe(jshint())
+		.pipe(jshint.reporter('default'))
+		.pipe(jshint.reporter('fail'));
 });
