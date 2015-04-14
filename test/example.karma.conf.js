@@ -14,12 +14,12 @@ module.exports = function (config) {
 			]
 		},
 		frameworks: ['browserify', 'mocha', 'chai', 'sinon'],
-		browserify:{ // "needed soon"
+		browserify:{ 
 			extensions: ['.js'],
 			transform: ['browserify-istanbul', 'sassify'],
 			configure: function(bundle) {
 				bundle.on('prebundle', function() {
-					//bundle.external( ['d2l-IPASkeleton-options', 'd2l-orgunit'] );
+					bundle.external( ['d2l-IPASkeleton-options', 'd2l-orgunit'] );
 				});
 			}
 		},			

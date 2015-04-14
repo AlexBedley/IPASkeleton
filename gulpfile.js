@@ -71,5 +71,5 @@ gulp.task('publish-release', function(cb) {
 });
 
 gulp.task('coverage', function() {
-	open('./test/coverage/example/lcov/lcov-report/index.html');
+	open('./test/coverage/lcov/lcov-report/index.html');
 });

@@ -1,5 +1,5 @@
 'use strict';
-var studentPredictions = require('./services/student-predictions.js'),
+var studentPredictions = require('./student-predictions.service.js'),
 	render = require('./app.render.js'),	
 	d2lOrgUnit = require('d2l-orgunit'),
 	d2lOptions = require('d2l-IPASkeleton-options'),
