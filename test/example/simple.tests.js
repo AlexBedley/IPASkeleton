@@ -36,7 +36,7 @@ describe("Testing app.js", function() {
         stubGet(true);
         var parent = {};
         app(parent);
-        expect(parent.innerHTML).to.be.equal('Dobry Den, ' + FIRST_NAME + ' ' + LAST_NAME + '!');
+        expect(parent.innerHTML).to.be.equal('Dobry Den, ' + FIRST_NAME + ' ' + LAST_NAME + '!??');
     });
     it('should set innerHTML to be err', function() {
         stubGet(false);
