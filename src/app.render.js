@@ -7,7 +7,7 @@ var langTerms = require('./lang-terms.js'),
 		{ width: 741, type: "max-width", class: "bp-3" },
 		{ width: 621, type: "max-width", class: "bp-4" }
 	];
-require('./scss/app.scss');
+//require('./scss/app.scss');
 
 var initPage = function(parent, mainId, topId, bottomId, includeTop, includeBottom) {
 	initHtml(parent, mainId, topId, bottomId, includeTop, includeBottom);
