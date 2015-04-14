@@ -8,7 +8,9 @@ var frau = require('free-range-app-utils'),
 	semver = require('semver'),
 	open = require("open"),
 	del = require('del'),
-	jshint = require('gulp-jshint');
+	jshint = require('gulp-jshint'),
+	browserify = require('browserify'),
+	source = require('vinyl-source-stream');
 
 var setValidDevTagOrVersion = function(options) {
 	var tag = process.env.GIT_CUR_TAG;
@@ -85,4 +87,15 @@ gulp.task('lint', function() {
 		.pipe(jshint())
 		.pipe(jshint.reporter('default'))
 		.pipe(jshint.reporter('fail'));
+});
+
+gulp.task('browserify', function() {
+	var b = browserify({
+		entries: './src/app.js',
+		standalone: 'IPA'
+	}).external('d2l-orgunit');
+
+	return b.bundle()
+		.pipe(source('app.js'))
+		.pipe(gulp.dest('./dist'));
 });
