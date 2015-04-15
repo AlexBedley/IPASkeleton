@@ -10,7 +10,12 @@ var frau = require('free-range-app-utils'),
 	del = require('del'),
 	jshint = require('gulp-jshint'),
 	browserify = require('browserify'),
-	source = require('vinyl-source-stream');
+	source = require('vinyl-source-stream'),
+	uglify = require('gulp-uglify'),
+	streamify = require('gulp-streamify'),
+	coveralls = require('gulp-coveralls'),
+	lcovResultMerger = require('lcov-result-merger'),
+	karma = require('node-karma-wrapper');
 
 var setValidDevTagOrVersion = function(options) {
 	var tag = process.env.GIT_CUR_TAG;
@@ -86,7 +91,10 @@ gulp.task('lint', function() {
 	return gulp.src(['./src/**/*.js', './test/**/*.js', './gulpfile.js', '!./test/coverage/**/*'])
 		.pipe(jshint())
 		.pipe(jshint.reporter('default'))
-		.pipe(jshint.reporter('fail'));
+		.pipe(jshint.reporter('fail'))
+		.on('error', function (error) {
+        	throw error;
+      	});
 });
 
 gulp.task('browserify', function() {
@@ -97,5 +105,17 @@ gulp.task('browserify', function() {
 
 	return b.bundle()
 		.pipe(source('app.js'))
+		.pipe(streamify(uglify()))
 		.pipe(gulp.dest('./dist'));
 });
+
+gulp.task('coveralls', function() {
+	gulp.src('./test/coverage/*/lcov/lcov.info')
+		.pipe(lcovResultMerger())
+		.pipe(coveralls());
+});
+
+gulp.task('test', function(cb) {
+	var karmaServer = karma({configFile: './test/example.karma.conf.js'});
+	karmaServer.simpleRun(cb);
+})
