@@ -2,9 +2,8 @@
 var studentPredictions = require('./student-predictions.service.js'),
 	render = require('./app.render.js'),	
 	d2lOrgUnit = require('d2l-orgunit'),
-	d2lOptions = require('d2l-IPASkeleton-options'),
 	extend = require('extend'),
-	DEFAULT_OPTIONS = {
+	DEFAULT_IPA_SKELETON_OPTIONS = {
 		numStudents: 10,
 		includeTop: true,
 		includeBottom: true,
@@ -13,16 +12,16 @@ var studentPredictions = require('./student-predictions.service.js'),
 		topId: 'ipa-top-student-predictions',
 		bottomId: 'ipa-bottom-student-predictions'
 	},
-	options = extend(DEFAULT_OPTIONS, d2lOptions);
+	ipaSkeletonOptions = {};
 
 var getOrgUnitId = function() {
-	return (d2lOrgUnit.OrgUnitId !== d2lOrgUnit.OrgId) ? d2lOrgUnit.OrgUnitId : options.orgUnitId;
+	return (d2lOrgUnit.OrgUnitId !== d2lOrgUnit.OrgId) ? d2lOrgUnit.OrgUnitId : ipaSkeletonOptions.orgUnitId;
 };
 
 var setupIds = function(baseId) {	
-	options.mainId = baseId + '-' + options.mainId;
-	options.topId = baseId + '-' + options.topId;
-	options.bottomId = baseId + '-' + options.bottomId;
+	ipaSkeletonOptions.mainId = baseId + '-' + ipaSkeletonOptions.mainId;
+	ipaSkeletonOptions.topId = baseId + '-' + ipaSkeletonOptions.topId;
+	ipaSkeletonOptions.bottomId = baseId + '-' + ipaSkeletonOptions.bottomId;
 };
 
 var studPredSucc = function (parent) {
@@ -38,26 +37,36 @@ var studPredErr = function(err, res){ // TO DO improve error handling
 	console.log(res);
 };
 
-module.exports = function(parent) {
+module.exports = function(parent, options) {
+	ipaSkeletonOptions = extend(DEFAULT_IPA_SKELETON_OPTIONS, options.IPASkeleton);
+	
 	var orgUnitId = getOrgUnitId();
+	
 	setupIds(parent.id);
 	
-	render.init(parent, options.mainId, options.topId, options.bottomId, options.includeTop, options.includeBottom);	
+	render.init(
+		parent, 
+		ipaSkeletonOptions.mainId, 
+		ipaSkeletonOptions.topId, 
+		ipaSkeletonOptions.bottomId, 
+		ipaSkeletonOptions.includeTop, 
+		ipaSkeletonOptions.includeBottom
+	);	
 	
-	if (options.includeTop) {
+	if (ipaSkeletonOptions.includeTop) {
 		studentPredictions(
 			orgUnitId,
-			studPredSucc(document.getElementById(options.topId)),
+			studPredSucc(document.getElementById(ipaSkeletonOptions.topId)),
 			studPredErr,
-			{ sortOrder: "desc", numStudents: options.numStudents }
+			{ sortOrder: "desc", numStudents: ipaSkeletonOptions.numStudents }
 		);	
 	}
-	if (options.includeBottom) {
+	if (ipaSkeletonOptions.includeBottom) {
 		studentPredictions(
 			orgUnitId,
-			studPredSucc(document.getElementById(options.bottomId)),
+			studPredSucc(document.getElementById(ipaSkeletonOptions.bottomId)),
 			studPredErr,
-			{ sortOrder: "asc", numStudents: options.numStudents  }
+			{ sortOrder: "asc", numStudents: ipaSkeletonOptions.numStudents  }
 		);
 	}
 };
