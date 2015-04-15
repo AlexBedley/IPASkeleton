@@ -47,11 +47,11 @@ function makeAppConfig(target) {
 		.pipe(gulp.dest('dist'));
 }
 
-gulp.task('appconfig-local', function() {
+gulp.task('appconfig-local', ['clean'], function() {
 	return makeAppConfig(localAppResolver.getUrl());
 });
 
-gulp.task('appconfig-release', function() {
+gulp.task('appconfig-release', ['clean'], function() {
 	return makeAppConfig(appPublisher.getLocation());
 });
 
@@ -59,7 +59,7 @@ gulp.task('appresolver', function() {
 	localAppResolver.host();
 });
 
-gulp.task('publish-release', function(cb) {
+gulp.task('publish-release', ['browserify', 'appconfig-release'], function(cb) {
 	gulp.src('./dist/**')
 		.pipe(appPublisher.getStream())
 		.on('end', function() {
@@ -97,7 +97,7 @@ gulp.task('lint', function() {
       	});
 });
 
-gulp.task('browserify', function() {
+gulp.task('browserify', ['clean', 'lint'], function() {
 	var b = browserify({
 		entries: './src/app.js',
 		standalone: 'IPA'
@@ -115,7 +115,11 @@ gulp.task('coveralls', function() {
 		.pipe(coveralls());
 });
 
-gulp.task('test', function(cb) {
+gulp.task('test', ['lint'], function(cb) {
 	var karmaServer = karma({configFile: './test/example.karma.conf.js'});
 	karmaServer.simpleRun(cb);
-})
+});
+
+gulp.task('build', ['browserify', 'appconfig-local']);
+
+gulp.task('default', ['build']);
