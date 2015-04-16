@@ -54,7 +54,7 @@ To make changes to the app (assuming you have already cloned it - see [*Running 
   - `gulp build`
   - `gulp appresolver`
   - Navigate to `/d2l/apps/IPASkeleton/`
-5. Run the tests locally `npm test`
+5. Run the tests locally `gulp test`
 6. Make your commits `git commit -am "This is a commit message"`
 7. Push your commits to your branch on GitHub `git push`
 8. Log onto GitHub and [create a Pull Request](https://help.github.com/articles/creating-a-pull-request/). Then you can request reviewers by [mentioning people](https://github.com/blog/821) on the pull request description (ie @AlexBedley).
