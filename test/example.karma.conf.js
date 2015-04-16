@@ -27,8 +27,15 @@ module.exports = function (config) {
 		autoWatch: false,			
 		// logLevel - LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
 		logLevel: config.LOG_WARN, 
-		browsers: ['PhantomJS'],		
+		browsers: ['PhantomJS'],
+		customLaunchers: {
+			Chrome_travis_ci: {
+				base: 'Chrome',
+				flags: ['--no-sandbox']
+			}
+		},
 		browserNoActivityTimeout: 30000, // Team Gaudi did this temp
-		singleRun: true
+		singleRun: true,
+		reportSlowerThan: 500
 	});
 }; 

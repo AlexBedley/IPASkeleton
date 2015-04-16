@@ -125,10 +125,25 @@ gulp.task('coveralls', function() {
 		.pipe(coveralls());
 });
 
+var karmaSetup = function(browsers) {
+	var opts = {
+		configFile: './test/example.karma.conf.js',
+		'browsers': browsers
+	};
+	if (process.env.TRAVIS) {
+		opts.browsers.push('Chrome_travis_ci');
+	}
+	return karma(opts);
+};
+
 gulp.task('test', ['lint'], function(cb) {
-	var karmaServer = karma({
-		configFile: './test/example.karma.conf.js'
-	});
+	var karmaServer = karmaSetup(['PhantomJS']);
+	karmaServer.simpleRun(cb);
+});
+
+gulp.task('test-browsers', ['lint'], function(cb) {
+	var karmaServer = karmaSetup(['Chrome', 'Firefox', 'PhantomJS']);
+
 	karmaServer.simpleRun(cb);
 });
 
