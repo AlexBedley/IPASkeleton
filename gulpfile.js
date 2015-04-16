@@ -15,7 +15,8 @@ var frau = require('free-range-app-utils'),
 	streamify = require('gulp-streamify'),
 	coveralls = require('gulp-coveralls'),
 	lcovResultMerger = require('lcov-result-merger'),
-	karma = require('node-karma-wrapper');
+	karma = require('node-karma-wrapper'),
+	gulp_if = require('gulp-if');
 
 var setValidDevTagOrVersion = function(options) {
 	var tag = process.env.GIT_CUR_TAG;
@@ -59,7 +60,7 @@ gulp.task('appresolver', function() {
 	localAppResolver.host();
 });
 
-gulp.task('publish-release', ['browserify', 'appconfig-release'], function(cb) {
+gulp.task('publish-release', ['browserify-release', 'appconfig-release'], function(cb) {
 	gulp.src('./dist/**')
 		.pipe(appPublisher.getStream())
 		.on('end', function() {
@@ -97,16 +98,25 @@ gulp.task('lint', function() {
       	});
 });
 
-gulp.task('browserify', ['clean', 'lint'], function() {
+var browserifyUglify = function (release) {
 	var b = browserify({
 		entries: './src/app.js',
 		standalone: 'IPA'
-	}).external('d2l-orgunit');
+	})
+	.external('d2l-orgunit');
 
 	return b.bundle()
 		.pipe(source('app.js'))
-		.pipe(streamify(uglify()))
+		.pipe(gulp_if(release, streamify(uglify())))
 		.pipe(gulp.dest('./dist'));
+};
+
+gulp.task('browserify', ['clean', 'lint'], function() {
+	browserifyUglify(false);
+});
+
+gulp.task('browserify-release', ['clean', 'lint'], function() {
+	browserifyUglify(true);
 });
 
 gulp.task('coveralls', function() {
