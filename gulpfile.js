@@ -93,17 +93,17 @@ gulp.task('lint', function() {
 		.pipe(jshint())
 		.pipe(jshint.reporter('default'))
 		.pipe(jshint.reporter('fail'))
-		.on('error', function (error) {
-        	throw error;
-      	});
+		.on('error', function(error) {
+			throw error;
+		});
 });
 
-var browserifyUglify = function (release) {
+var browserifyUglify = function(release) {
 	var b = browserify({
-		entries: './src/app.js',
-		standalone: 'IPA'
-	})
-	.external('d2l-orgunit');
+			entries: './src/app.js',
+			standalone: 'IPA'
+		})
+		.external('d2l-orgunit');
 
 	return b.bundle()
 		.pipe(source('app.js'))
@@ -126,7 +126,9 @@ gulp.task('coveralls', function() {
 });
 
 gulp.task('test', ['lint'], function(cb) {
-	var karmaServer = karma({configFile: './test/example.karma.conf.js'});
+	var karmaServer = karma({
+		configFile: './test/example.karma.conf.js'
+	});
 	karmaServer.simpleRun(cb);
 });
 
