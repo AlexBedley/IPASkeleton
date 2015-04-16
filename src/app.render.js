@@ -2,10 +2,10 @@
 var langTerms = require('./lang-terms.js'),
 	responsiveElement = require('./responsive-element.js'),
 	BREAKPOINTS = [
-		{ width: 957, type: "max-width", class: "bp-1" },
-		{ width: 851, type: "max-width", class: "bp-2" },
-		{ width: 741, type: "max-width", class: "bp-3" },
-		{ width: 621, type: "max-width", class: "bp-4" }
+		{ width: 957, type: 'max-width', class: 'bp-1' },
+		{ width: 851, type: 'max-width', class: 'bp-2' },
+		{ width: 741, type: 'max-width', class: 'bp-3' },
+		{ width: 621, type: 'max-width', class: 'bp-4' }
 	];
 //require('./scss/app.scss');
 
@@ -45,7 +45,7 @@ var singleStudentHtml = function(student){
 	var html = '<li class="category-'+student.Prediction.CategoryId+'">';
 		html += '	<div class="student-info">';
 		html += '		<span class="name">'+student.Profile.Name+'</span>';
-		html += '		<a class="s3 info" href="'+student.Profile.ProfileUrl+'">' + langTerms['Links']['MoreInfo'] + '</a>';
+		html += '		<a class="s3 info" href="'+student.Profile.ProfileUrl+'">' + langTerms.Links.MoreInfo + '</a>';
 		html += '	</div>';
 		html += '	<span class="predicted-grade">'+student.Prediction.RoundedValue+'</span>';
 		html += '</li>';
