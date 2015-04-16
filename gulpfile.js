@@ -130,9 +130,6 @@ var karmaSetup = function(browsers) {
 		configFile: './test/example.karma.conf.js',
 		'browsers': browsers
 	};
-	if (process.env.TRAVIS) {
-		opts.browsers.push('Chrome_travis_ci');
-	}
 	return karma(opts);
 };
 
@@ -142,8 +139,13 @@ gulp.task('test', ['lint'], function(cb) {
 });
 
 gulp.task('test-browsers', ['lint'], function(cb) {
-	var karmaServer = karmaSetup(['Chrome', 'Firefox', 'PhantomJS']);
-
+	var browsers = ['Firefox', 'PhantomJS'];
+	if (process.env.TRAVIS) {
+		browsers.push('Chrome_travis_ci');
+	} else {
+		browsers.push('Chrome');
+	}
+	var karmaServer = karmaSetup(browsers);
 	karmaServer.simpleRun(cb);
 });
 
