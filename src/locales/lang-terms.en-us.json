@@ -1,0 +1,9 @@
+{
+	"Headers": {
+		"Top": "Top Predictions",
+		"Bottom": "Bottom Predictions"
+	},
+	"Links" : {
+		"MoreInfo": "More Info"
+	}
+}
