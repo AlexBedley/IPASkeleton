@@ -15,7 +15,7 @@ before_script:
 - sh -e /etc/init.d/xvfb start
 script:
 - printenv
-- gulp test-browsers && [ "$TRAVIS_SECURE_ENV_VARS" = "true" ] && export NODE_ENV=production && (([ "${TRAVIS_BRANCH}" = "master" ] && gulp publish-release) || true)
+- gulp test-browsers && [ "$TRAVIS_SECURE_ENV_VARS" = "true" ] && export NODE_ENV=production && ((([ "${TRAVIS_BRANCH}" = "master" ] || [ "${GIT_CUR_TAG}" != "" ]) && gulp publish-release) || true)
 after_success:
 - gulp coveralls
   # ENV-GLOBAL-SECURE KEYS
