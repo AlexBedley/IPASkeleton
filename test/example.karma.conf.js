@@ -4,22 +4,27 @@ module.exports = function (config) {
 	
 	config.set({	 
 		basePath: '../',
-		files: ['test/example/*.tests.js', 'src/*.js'],
+		files: ['test/*.tests.js'],
 		reporters : ['mocha', 'coverage'],
 		coverageReporter: {
-			dir : 'test/coverage/example',
+			dir : 'test/coverage',
 			reporters: [
 				{ type: 'lcov', subdir: 'lcov' },
 				{ type: 'text'}
 			]
 		},
 		frameworks: ['browserify', 'mocha', 'chai', 'sinon'],
-		browserify:{ // "needed soon"
+		browserify:{ 
 			extensions: ['.js'],
-			transform: ['browserify-istanbul']
+			transform: ['browserify-istanbul', 'sassify'],
+			configure: function(bundle) {
+				bundle.on('prebundle', function() {
+					bundle.external( ['d2l-IPASkeleton-options', 'd2l-orgunit'] );
+				});
+			}
 		},			
 		preprocessors: {
-			'test/example/*.tests.js': [ 'browserify' ], // "needed soon"
+			'test/*.tests.js': [ 'browserify' ], // "needed soon"
 			'src/*.js': [ 'coverage', 'browserify' ]
 		},
 		port: 9876,
