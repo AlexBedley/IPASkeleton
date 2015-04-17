@@ -31,7 +31,6 @@
     "lcov-result-merger": "^1.0.2",
     "mocha": "^2.2.1",
     "node-karma-wrapper": "^0.2.2",
-    "open": "0.0.5",
     "peanut-gallery": "^0.0.4",
     "semver": "^4.3.1",
     "superagent": "^1.1.0",

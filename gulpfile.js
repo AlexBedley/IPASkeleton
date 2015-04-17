@@ -6,7 +6,6 @@ var frau = require('free-range-app-utils'),
 	pg = require('peanut-gallery'),
 	publisher = require('gulp-frau-publisher'),
 	semver = require('semver'),
-	open = require("open"),
 	del = require('del'),
 	jshint = require('gulp-jshint'),
 	browserify = require('browserify'),
@@ -78,10 +77,6 @@ gulp.task('publish-release', ['browserify-release', 'appconfig-release'], functi
 			console.log(error);
 			process.exit(1);
 		});
-});
-
-gulp.task('coverage', function() {
-	open('./test/coverage/example/lcov/lcov-report/index.html');
 });
 
 gulp.task('clean', function(cb) {
