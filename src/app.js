@@ -28,7 +28,7 @@ var studPredSucc = function (parent) {
 	return function(result) {
 		result = JSON.parse(result.text);
 		render.students(parent, result);		
-	}
+	};
 };
 
 var studPredErr = function(err, res){ // TO DO improve error handling

@@ -1,3 +1,5 @@
+'use strict';
+
 var request = require('superagent'),
 	auth = require('superagent-d2l-session-auth'),
 	extend = require('extend'),

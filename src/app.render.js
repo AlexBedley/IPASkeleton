@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 var langTerms = require('./lang-terms.js'),
 	responsiveElement = require('./responsive-element.js'),
 	BREAKPOINTS = [
@@ -22,10 +22,10 @@ var initPage = function(parent, mainId, topId, bottomId, includeTop, includeBott
 var initHtml = function(parent, mainId, topId, bottomId, includeTop, includeBottom) {
 	var html = '<div id="' + mainId + '" class="d2l-max-width">';
 	if (includeTop) {
-		html += '	<div id="' + topId + '" class="student-predictions" ><h3>' + langTerms['Headers']['Top'] + '</h2></div>';
+		html += '	<div id="' + topId + '" class="student-predictions" ><h3>' + langTerms.Headers.Top + '</h2></div>';
 	}
 	if (includeBottom) {
-		html += '	<div id="' + bottomId + '" class="student-predictions" ><h3>' + langTerms['Headers']['Bottom'] + '</h2></div>';
+		html += '	<div id="' + bottomId + '" class="student-predictions" ><h3>' + langTerms.Headers.Bottom + '</h2></div>';
 	}
 	html += '</div>';
 
@@ -55,4 +55,4 @@ var singleStudentHtml = function(student){
 module.exports = {
 	init: initPage,
 	students: studentsHtml
-}
+};
