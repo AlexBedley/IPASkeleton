@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 var assignBreakpointClasses = function(parent, breakpoints) {
 	var parentWidth = parent.offsetWidth;
@@ -12,4 +12,4 @@ var assignBreakpointClasses = function(parent, breakpoints) {
 
 module.exports = function(parent, breakpoints) { // TO DO improve bp handling to recheck on resize (but effeciently...) into own module
 	assignBreakpointClasses(parent, breakpoints);
-}
+};

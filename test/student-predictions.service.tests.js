@@ -13,7 +13,7 @@ var setupStubs= function(endErr, endOk) {
 		'query': stubQuery,
 		'get': stubGet
 	};
-}
+};
 var getStubForRequestGet = function(stubQuery) {
 	return sinon.stub(request, 'get', function(url) {
         var stub = {

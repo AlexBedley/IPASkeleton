@@ -1,3 +1,5 @@
+'use strict';
+
 var langTermsJson = require('../src/locales/lang-terms.en-us.json'),
 	langTerms = require('../src/lang-terms.js');
 	

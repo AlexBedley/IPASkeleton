@@ -5,7 +5,7 @@ module.exports = function (config) {
 	config.set({	 
 		basePath: '../',
 		files: ['test/*.tests.js'],
-		reporters : ['progress', 'coverage'],
+		reporters : ['mocha', 'coverage'],
 		coverageReporter: {
 			dir : 'test/coverage',
 			reporters: [
@@ -31,9 +31,16 @@ module.exports = function (config) {
 		colors: true,
 		autoWatch: false,			
 		// logLevel - LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
-		logLevel: config.LOG_INFO, 
-		browsers: ['PhantomJS'],		
+		logLevel: config.LOG_WARN, 
+		browsers: ['PhantomJS'],
+		customLaunchers: {
+			Chrome_travis_ci: {
+				base: 'Chrome',
+				flags: ['--no-sandbox']
+			}
+		},
 		browserNoActivityTimeout: 30000, // Team Gaudi did this temp
-		singleRun: true
+		singleRun: true,
+		reportSlowerThan: 500
 	});
 }; 

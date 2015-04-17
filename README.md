@@ -31,7 +31,7 @@ You want to install gulp globally so you can run `gulp` on the command line.
     npm install -g gulp
 Run these commands to build and host the app locally. You may want to run `gulp appresolver` in a different window because you will not be able to issue new commands while it is running.
 
-    npm run build
+    gulp build
     gulp appresolver
 Now your app is available at [http://localhost:3000/app/app.js](http://localhost:3000/app/app.js) while your `gulp appresolver` console is running. You should see the source of a javascript file at that url.
 
@@ -51,10 +51,10 @@ To make changes to the app (assuming you have already cloned it - see [*Running 
 3. Checkout a new branch `git checkout -b "this_is_a_branch_name"`
 4. Do your changes
 5. View your local changes in the LE (assuming you have completed the [LE Integration](https://github.com/AlexBedley/IPASkeleton#le-integration) step above)
-  - `npm run build`
+  - `gulp build`
   - `gulp appresolver`
   - Navigate to `/d2l/apps/IPASkeleton/`
-5. Run the tests locally `npm test`
+5. Run the tests locally `gulp test`
 6. Make your commits `git commit -am "This is a commit message"`
 7. Push your commits to your branch on GitHub `git push`
 8. Log onto GitHub and [create a Pull Request](https://help.github.com/articles/creating-a-pull-request/). Then you can request reviewers by [mentioning people](https://github.com/blog/821) on the pull request description (ie @AlexBedley).
@@ -89,7 +89,7 @@ You should not publish directly to the CDN from your local machine.  However, if
 1. Obtain the S3 secret key (currently encrypted in `.travis.yml`) from Alex or Jon  
 2. Replace `options.creds.secret` (in `gulpfile.js`) with the secret key (and don't commit/push the secret key)  
 3. Manually set `options.devTag` (in `gulpfile.js`) to something unique (Travis-CI uses the commit SHA) or 'options.version' if you do not want /dev/ in the URL.  
-4. Run `npm run publish-release`  
+4. Run `gulp publish-release`  
 5. **Don't commit** because the secret key is now in `gulpfile.js`
 
 ##Adding new secure variables to .travis.yml
