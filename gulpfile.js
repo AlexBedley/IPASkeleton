@@ -64,7 +64,7 @@ gulp.task('publish-release', ['browserify-release', 'appconfig-release'], functi
 		.pipe(appPublisher.getStream())
 		.on('end', function() {
 			var message = '##### Deployment available online:\n' +
-				'#### - [app.js](' + appPublisher.getLocation() + appFilename + ')\n' +
+				'#### - [' + appFilename + '](' + appPublisher.getLocation() + appFilename + ')\n' +
 				'#### - [appconfig.json](' + appPublisher.getLocation() + 'appconfig.json)';
 
 			pg.comment(message, {}, function(error, response) {
@@ -95,13 +95,13 @@ gulp.task('lint', function() {
 
 var browserifyUglify = function(release) {
 	var b = browserify({
-			entries: './src/app.js',
+			entries: './src/' + appFilename,
 			standalone: 'IPA'
 		})
 		.external('d2l-orgunit');
 
 	return b.bundle()
-		.pipe(source('app.js'))
+		.pipe(source(appFilename))
 		.pipe(gulp_if(release, streamify(uglify())))
 		.pipe(gulp.dest('./dist'));
 };
