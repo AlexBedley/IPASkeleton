@@ -115,7 +115,7 @@ gulp.task('browserify-release', ['clean', 'lint'], function() {
 });
 
 gulp.task('coveralls', function() {
-	gulp.src('./test/coverage/*/lcov/lcov.info')
+	gulp.src('./test/coverage/**/lcov/lcov.info')
 		.pipe(lcovResultMerger())
 		.pipe(coveralls());
 });
